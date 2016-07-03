@@ -34,5 +34,19 @@ public class Main {
 			t=20;
 		}
 		System.out.println(t);
+		System.out.println();
+		for(i = 10; i > 0; i--){
+			System.out.println(i);
+		}
+		
+		int three = 3;
+		for(int y = 1; y <=10; y++){
+			System.out.println(Math.pow(three, y));
+		}
+		
+		for(i = 1; i <= 100; i++){
+			System.out.println(Math.round(Math.random()*i));
+		}
+		
 	}
 }
