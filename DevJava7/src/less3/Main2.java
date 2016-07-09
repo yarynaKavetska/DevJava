@@ -9,15 +9,19 @@ public class Main2 {
 		System.out.println("Введіть максимальне число");
 		int max = read(sc);
 		int cpu = random(1, max);
+		int count = 1;
 		while(true){
 			System.out.println("Введіть число від 1 до "+ max);
 			int user = read(sc);
 			if(user==cpu){
-				System.out.println("Вітаєто Ви перемогли");
+				System.out.println("Вітаєто Ви перемогли за "+count+" ходів");
 				return;
+			}else if(user>cpu){
+				System.out.println("Ви ввели більше ніж загадав комп");
 			}else{
-				System.out.println("Ви не вгадали");
+				System.out.println("Ви ввели меньше ніж загадав комп");
 			}
+			count++;
 		}
 	}
 	
