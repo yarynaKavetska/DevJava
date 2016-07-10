@@ -10,7 +10,7 @@ public class Main {
 //		int c = add(3, 5);
 //		System.out.println(c);
 		int[] arr = new int[10];
-		randomaizer(arr);
+		arr = randomaizer(arr);
 		arr = increase(arr);
 		for (int i = 0; i < arr.length; i++) {
 			System.out.println(arr[i]);
@@ -48,10 +48,11 @@ public class Main {
 		return array2;
 	}
 	
-	static void randomaizer(int[] array){
+	static int[] randomaizer(int[] array){
 		for (int i = 0; i < array.length; i++) {
 			array[i] = random(1, 10);
 		}
+		return array;
 	}
 	
 	static int random(int min, int max){
