@@ -23,13 +23,9 @@ public class Main {
 		Collection.Iter5 iter5 = new Collection.Iter5();
 		iter5.print();
 		System.out.println();
-		print(2345);
-//		System.out.println(fact(6));
+		rec(7895, 0, 0);
 	}
 	
-	static void print(int number){
-		rec(number, 0);
-	}
 	
 	/**Дано 4-х значне число.Потрібно написати рекурсивний
 	 *  метод,який буде перевіряти чи є в даному числі непарні
@@ -37,15 +33,26 @@ public class Main {
 	 *   немає то перевірити наявність нулів в числі.(не 
 	 *   використовуючи циклів ...*/
 	
-	
-	static void rec(int number, int sum){
+	//Тут згідно умови ось такий метод, як бачите дуже не красивий
+	//тому думаю умова не зовсім правильна
+	//також є взагалі не рекурсивне рашення
+	//і без циклів + варіани вирішення через поля класів
+	static void rec(int number, int sum, int count){
 		int ost = number%10;
 		if(number!=0){
 			if(ost%2!=0){
-				System.out.println(sum+ost);
-				rec(number/10, ost+sum);
+				System.out.println(ost);
+				rec(number/10, sum+ost, count);
+			}else if(ost==0){
+				rec(number/10, sum, ++count);
 			}else{
-				rec(number/10, sum);
+				rec(number/10, sum, count);
+			}
+		}else{
+			if(sum!=0){
+				System.out.println("sum = "+sum);
+			}else{
+				System.out.println("count = "+count);
 			}
 		}
 	}
