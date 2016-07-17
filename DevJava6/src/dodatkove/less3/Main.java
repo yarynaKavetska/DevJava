@@ -28,7 +28,7 @@ public class Main {
 	}
 	
 	static void print(int number){
-		System.out.println(rec(number));
+		rec(number, 0);
 	}
 	
 	/**Дано 4-х значне число.Потрібно написати рекурсивний
@@ -38,16 +38,15 @@ public class Main {
 	 *   використовуючи циклів ...*/
 	
 	
-	static int rec(int number){
+	static void rec(int number, int sum){
 		int ost = number%10;
-		int recNumb = 0;
-		if(number!=0) recNumb=rec(number/10);
-		if(recNumb%2==0){
-			return 0;
-		}else{
-			ost+=recNumb;
-			System.out.println(ost);
-			return ost;
+		if(number!=0){
+			if(ost%2!=0){
+				System.out.println(sum+ost);
+				rec(number/10, ost+sum);
+			}else{
+				rec(number/10, sum);
+			}
 		}
 	}
 	
