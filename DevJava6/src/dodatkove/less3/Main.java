@@ -23,7 +23,7 @@ public class Main {
 		Collection.Iter5 iter5 = new Collection.Iter5();
 		iter5.print();
 		System.out.println();
-		rec(7895, 0, 0);
+		rec(2440, 0, 0);
 	}
 	
 	
