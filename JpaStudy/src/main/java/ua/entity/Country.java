@@ -16,9 +16,19 @@ public class Country {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
+	private long population;
+	
 	private String name;
 	@OneToMany(mappedBy="country")
 	private List<Recipe> recipes = new ArrayList<>();
+	
+	public long getPopulation() {
+		return population;
+	}
+
+	public void setPopulation(long population) {
+		this.population = population;
+	}
 
 	public int getId() {
 		return id;
