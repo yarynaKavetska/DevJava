@@ -30,6 +30,7 @@ public class Main {
 		// }
 		// System.out.println(list.indexOf("A"));
 		// LinkedList<String> linkedList = new LinkedList<>();
+		list.add(new Pc(4, 500, 4));
 		boolean isRun = true;
 		while (isRun) {
 			System.out.println("Enter 1 to add PC");
