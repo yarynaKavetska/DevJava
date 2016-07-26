@@ -1,12 +1,22 @@
 package ua.controller;
 
+import java.lang.ref.SoftReference;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.WeakHashMap;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Expression;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 import ua.entity.AmountAndIngredient;
 import ua.entity.Country;
@@ -33,31 +43,33 @@ public class Main {
 		// System.out.println(countries);
 		// em.getTransaction().commit();
 		
-		List<Recipe> recipe = em.createQuery("select r "
-				+ "from Recipe r "
-				+ "join r.country c "
-				+ "where c.name=:name", Recipe.class)
-				.setParameter("name", "Ukraine").getResultList();
+//		List<Recipe> recipe = em.createQuery("select r "
+//				+ "from Recipe r "
+//				+ "join r.country c "
+//				+ "where c.name=:name", Recipe.class)
+//				.setParameter("name", "Ukraine").getResultList();
+//		
+//		boolean isRun = true;
+//		while (isRun) {
+//			System.out.println("Enter 1 to add recipe");
+//			System.out.println("Enter 2 to add country");
+//			System.out.println("Enter 0 to add exit");
+//			switch (sc.next()) {
+//			case "1": {
+//				addIngredients();
+//				break;
+//			}
+//			case "2": {
+//				addCountry();
+//				break;
+//			}
+//			default :{
+//				isRun = false;
+//			}
+//			}
 		
-		boolean isRun = true;
-		while (isRun) {
-			System.out.println("Enter 1 to add recipe");
-			System.out.println("Enter 2 to add country");
-			System.out.println("Enter 0 to add exit");
-			switch (sc.next()) {
-			case "1": {
-				addIngredients();
-				break;
-			}
-			case "2": {
-				addCountry();
-				break;
-			}
-			default :{
-				isRun = false;
-			}
-			}
-		}
+	
+		
 
 
 		// Country country = em
@@ -67,6 +79,44 @@ public class Main {
 		// // select * from Country where name='Ukraine'
 		// .setParameter("name", "Ukraine").getSingleResult();
 		// System.out.println(country.getName());
+		em.getTransaction().begin();
+//		LocalDate date = LocalDate.of(2016, 07, 25);
+//		date.minusDays(1);
+//		List<Country> country = em.createQuery("SELECT distinct c "
+//				+"FROM Country c "
+//				+"JOIN fetch c.recipes "
+//				+"WHERE c.name=:name", Country.class)
+//				.setParameter("name", "Ukraine")
+//				.getResultList();
+		Map<String, byte[]> map = new WeakHashMap<>();
+		SoftReference<Map<String, byte[]>> mapdel = new SoftReference<Map<String,byte[]>>(map);
+		
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<Recipe> cq = cb.createQuery(Recipe.class);
+		Root<Recipe> root = cq.from(Recipe.class);
+		Predicate findByRecipeName = cb.equal(root.get("name"),
+				"Borscht");
+		Join<Recipe, Country> countryJoin = root.join("country");
+		root.fetch("country");
+		cq.distinct(true);
+		Predicate findByCountryName = cb.equal(
+				countryJoin.get("name"), "Ukraine");
+		Predicate all = cb.and(findByRecipeName, findByCountryName);
+		Join<Recipe, AmountAndIngredient> amountAndIngredientJoin = 
+				root.join("amountAndIngredients");
+		Expression<Integer> ex = amountAndIngredientJoin.get("amount");
+		Predicate findByAmount = cb.greaterThan(
+				ex, 100);
+		all = cb.and(all, findByAmount);
+		Join<AmountAndIngredient, Ingredient> ingredientJoin = 
+				amountAndIngredientJoin.join("ingredient");
+		Predicate findByIngredientIds = ingredientJoin
+				.get("id").in(Arrays.asList(1,2,5,10));
+		all = cb.and(all,findByIngredientIds);
+		cq.where(all);
+		List<Recipe> recipes = em.createQuery(cq).getResultList();
+		System.out.println(recipes.get(0).getCountry());
+		em.getTransaction().commit();
 		em.close();
 		factory.close();
 	}
@@ -97,7 +147,6 @@ public class Main {
 	}
 
 	static Ingredient addIngredient(String ingredientName) {
-		System.out.println("Enter ingredient name");
 		Ingredient ingredient = null;
 		try {
 			ingredient = em
