@@ -1,5 +1,6 @@
 package ua.entity;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +21,8 @@ public class Recipe {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
+	private LocalTime time;
+	
 	private String name;
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Country country;
@@ -28,6 +31,14 @@ public class Recipe {
 	@JoinColumn(name = "recipe_id"), inverseJoinColumns = 
 	@JoinColumn(name = "amountAndIngredient_id"))
 	private List<AmountAndIngredient> amountAndIngredients= new ArrayList<>();
+	
+	public LocalTime getTime() {
+		return time;
+	}
+
+	public void setTime(LocalTime time) {
+		this.time = time;
+	}
 
 	public String getName() {
 		return name;
