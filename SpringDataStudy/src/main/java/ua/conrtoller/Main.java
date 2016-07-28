@@ -3,7 +3,6 @@ package ua.conrtoller;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import ua.repository.RecipeRepository;
 import ua.service.CountryService;
 
 public class Main {
