@@ -10,25 +10,15 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Country {
-
+public class MeasuringSystem {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	private long population;
-	
 	private String name;
-	@OneToMany(mappedBy="country")
-	private List<Recipe> recipes = new ArrayList<>();
-	
-	public long getPopulation() {
-		return population;
-	}
-	
-	public void setPopulation(long population) {
-		this.population = population;
-	}
+	@OneToMany(mappedBy="measuringSystem")
+	private List<AmountAndIngredient> amountAndIngredients= new ArrayList<>();
 
 	public int getId() {
 		return id;
@@ -46,11 +36,12 @@ public class Country {
 		this.name = name;
 	}
 
-	public List<Recipe> getRecipes() {
-		return recipes;
+	public List<AmountAndIngredient> getAmountAndIngredients() {
+		return amountAndIngredients;
 	}
 
-	public void setRecipes(List<Recipe> recipes) {
-		this.recipes = recipes;
+	public void setAmountAndIngredients(
+			List<AmountAndIngredient> amountAndIngredients) {
+		this.amountAndIngredients = amountAndIngredients;
 	}
 }
