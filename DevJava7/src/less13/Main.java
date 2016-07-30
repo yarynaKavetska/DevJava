@@ -1,6 +1,7 @@
 package less13;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -12,6 +13,7 @@ import less12.Person;
 import less8.Season;
 
 public class Main {
+	static Map<String, List<Person>> persons = new HashMap<>();
 
 	public static void main(String[] args) {
 		Season season = Season.WINTER;
@@ -43,7 +45,6 @@ public class Main {
 		map.put(Season.WINTER, "Winter is cold");
 		System.out.println(map.get(season));
 		
-		Map<String, List<Person>> persons = new HashMap<>();
 		String ingeneer = "Ingeneer";
 		persons.put(ingeneer, new ArrayList<>());
 		persons.get(ingeneer).add(new Person(25, "Petro"));
@@ -64,7 +65,13 @@ public class Main {
 				System.out.println(profesion + " " + personIter.next());
 			}
 		}
-		
+		Set<String> keySet = persons.keySet();
+		Collection<List<Person>> listValues = persons.values();
+		System.out.println();
+		for (Entry<String, List<Person>> entry : set) {
+			for(Person person : entry.getValue()){
+				System.out.println(entry.getKey() + " " + person);
+			}
+		}
 	}
-
 }
