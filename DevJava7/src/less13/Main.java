@@ -45,15 +45,15 @@ public class Main {
 		map.put(Season.WINTER, "Winter is cold");
 		System.out.println(map.get(season));
 		
-		String ingeneer = "Ingeneer";
-		persons.put(ingeneer, new ArrayList<>());
-		persons.get(ingeneer).add(new Person(25, "Petro"));
-		persons.get(ingeneer).add(new Person(35, "Ivan"));
-		persons.get(ingeneer).add(new Person(33, "Mykola"));
-		String programer = "Programer";
-		persons.put(programer, new ArrayList<>());
-		persons.get(programer).add(new Person(23, "Petro"));
-		persons.get(programer).add(new Person(25, "Sergiy"));
+		String proffesion = "Ingeneer";
+		persons.put(proffesion, new ArrayList<>());
+		persons.get(proffesion).add(new Person(25, "Petro"));
+		persons.get(proffesion).add(new Person(35, "Ivan"));
+		persons.get(proffesion).add(new Person(33, "Mykola"));
+		proffesion = "Programer";
+		persons.put(proffesion, new ArrayList<>());
+		persons.get(proffesion).add(new Person(23, "Petro"));
+		persons.get(proffesion).add(new Person(25, "Sergiy"));
 		Set<Entry<String, List<Person>>> set = persons.entrySet();
 		Iterator<Entry<String, List<Person>>> entryIter = set.iterator();
 		while(entryIter.hasNext()){
