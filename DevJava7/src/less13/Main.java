@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.TreeSet;
 
 import less12.Person;
 import less8.Season;
@@ -66,6 +67,15 @@ public class Main {
 			}
 		}
 		Set<String> keySet = persons.keySet();
+		Set<String> keySet2 = new TreeSet<>(persons.keySet());
+		System.out.println();
+		for (String key : keySet2) {
+			persons.get(key).sort(null);
+			List<Person> list = persons.get(key);
+			for (Person person : list) {
+				System.out.println(key + " " + person);
+			}
+		}
 		Collection<List<Person>> listValues = persons.values();
 		System.out.println();
 		for (Entry<String, List<Person>> entry : set) {
