@@ -13,15 +13,14 @@ public class Main {
 	static EntityManager em = factory.createEntityManager();
 
 	public static void main(String[] args) {
-		em.getTransaction().begin();
-		Country country = em.createQuery("SELECT distinct c FROM Country c "
-				+ "JOIN fetch c.recipes r WHERE r.name=:name", Country.class)
+		if(!em.getTransaction().isActive())em.getTransaction().begin();
+		Country country = em.createQuery("SELECT distinct c FROM Country c JOIN "
+				+ " FETCH c.recipes r WHERE r.name=:name", Country.class)
 				.setParameter("name", "Borsch")
 				.getSingleResult();
-		em.getTransaction().commit();
+		if(em.getTransaction().isActive())em.getTransaction().commit();
 		em.close();
 		factory.close();
-		System.out.println(country.getId()+" "+country.getName()+" "
-				+country.getRecipes());
+		System.out.println(country.getName()+" "+country.getRecipes());
 	}
 }
