@@ -77,13 +77,13 @@ public class RecipeFilter {
 	}
 
 	public void setValues(List<Value> values) {
-		Join<Recipe, AmountAndIngredient> aiJoin = 
-				root.join("amountAndIngredients");
-		Join<AmountAndIngredient, Ingredient> ingJoin =
-				aiJoin.join("ingredient");
-		Join<AmountAndIngredient, MeasuringSystem> msJoin = 
-				aiJoin.join("measuringSystem");
 		for (Value value : values) {
+			Join<Recipe, AmountAndIngredient> aiJoin = 
+					root.join("amountAndIngredients");
+			Join<AmountAndIngredient, Ingredient> ingJoin =
+					aiJoin.join("ingredient");
+			Join<AmountAndIngredient, MeasuringSystem> msJoin = 
+					aiJoin.join("measuringSystem");
 			Expression<Integer> exp = aiJoin.get("amount");
 			Predicate am = cb.equal(exp, value.amount);
 			Predicate ing = cb.equal(ingJoin.get("name"),
