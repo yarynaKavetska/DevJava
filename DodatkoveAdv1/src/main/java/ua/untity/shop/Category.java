@@ -47,6 +47,9 @@ public class Category {
 		return parent;
 	}
 	public void setParent(Category parent) {
+		if(parent!=null){
+			parent.childs.add(this);
+		}
 		this.parent = parent;
 	}
 	public List<StringProperty> getStringProperties() {
