@@ -24,6 +24,12 @@
 		<c:forEach items="${countries}" var="country">
 			<tr>
 				<td>${country.name}</td>
+				<td>
+					<a href="/admin/country/delete/${country.id}">delete</a>
+				</td>
+				<td>
+					<a href="/admin/country/update/${country.id}">update</a>
+				</td>
 			</tr>
 		</c:forEach>
 	</table>

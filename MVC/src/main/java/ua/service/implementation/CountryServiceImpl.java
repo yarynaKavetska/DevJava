@@ -39,4 +39,9 @@ public class CountryServiceImpl implements CountryService{
 		return countryRepository.findAll();
 	}
 
+	@Override
+	public void delete(int id) {
+		countryRepository.delete(id);
+	}
+
 }

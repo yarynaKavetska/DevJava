@@ -9,5 +9,6 @@
 <body>
 <p>Admin panel</p>
 <a href="/admin/country">Country</a>
+<a href="/admin/recipe">Recipe</a>
 </body>
 </html>
