@@ -28,4 +28,19 @@
 		<put-attribute name="title" value="admin" />
 		<put-attribute name="body" value="/WEB-INF/views/adminRecipe.jsp" />
 	</definition>
+	
+	<definition name="adminIngredient" extends="common">
+		<put-attribute name="title" value="admin" />
+		<put-attribute name="body" value="/WEB-INF/views/adminIngredient.jsp" />
+	</definition>
+	
+	<definition name="measuringSystemIngredient" extends="common">
+		<put-attribute name="title" value="admin" />
+		<put-attribute name="body" value="/WEB-INF/views/measuringSystemIngredient.jsp" />
+	</definition>
+	
+	<definition name="ingredientAmountAdmin" extends="common">
+		<put-attribute name="title" value="admin" />
+		<put-attribute name="body" value="/WEB-INF/views/ingredientAmountAdmin.jsp" />
+	</definition>
 </tiles-definitions>
