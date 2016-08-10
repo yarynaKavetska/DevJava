@@ -4,14 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import ua.entity.Country;
 import ua.repository.CountryRepository;
 import ua.service.CountryService;
 
 @Service
-@Transactional
 public class CountryServiceImpl implements CountryService{
 
 	@Autowired
@@ -31,7 +29,7 @@ public class CountryServiceImpl implements CountryService{
 
 	@Override
 	public void delete(String name) {
-		countryRepository.delete(name);
+		countryRepository.deleteByName(name);
 	}
 
 	@Override
