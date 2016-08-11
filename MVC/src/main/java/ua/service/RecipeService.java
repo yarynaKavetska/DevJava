@@ -3,6 +3,7 @@ package ua.service;
 import java.util.List;
 
 import ua.entity.Recipe;
+import ua.form.RecipeForm;
 
 public interface RecipeService {
 
@@ -10,6 +11,7 @@ public interface RecipeService {
 
 	void delete(int id);
 	
-	void save(String name, String time, int countryId);
+	void save(RecipeForm form);
 
+	RecipeForm findOneCountryInited(int id);
 }

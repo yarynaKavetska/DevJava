@@ -9,6 +9,7 @@
 </head>
 <body>
 	<form:form action="/admin/recipe" method="post" modelAttribute="recipe">
+		<form:input path="id" type="hidden"/>
 		<table>
 			<tr>
 				<td>
