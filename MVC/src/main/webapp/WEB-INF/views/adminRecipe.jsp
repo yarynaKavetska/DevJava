@@ -55,6 +55,9 @@
 				<td>
 					<a href="/admin/recipe/update/${recipe.id}">update</a>
 				</td>
+				<td>
+					<a href="/admin/recipe/${recipe.id}">add ingredients</a>
+				</td>
 			</tr>
 		</c:forEach>
 	</table>

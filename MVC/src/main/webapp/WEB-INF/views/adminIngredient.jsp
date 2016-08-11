@@ -1,22 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 </head>
 <body>
-	<form action="/admin/ingredient" method="post">
+	<form:form action="/admin/ingredient" method="post" modelAttribute="ingredient">
+		<form:hidden path="id"/>
 		<table>
 			<tr>
-				<td><input name="name" placeholder="Ingredient name"></td>
+				<td><form:input path="name" placeholder="Ingredient name"/></td>
 			</tr>
 			<tr>
 				<td><input type="submit"></td>
 			</tr>
 		</table>
-	</form>
+	</form:form>
 	<table>
 		<tr>
 			<th>Ingredient name</th>

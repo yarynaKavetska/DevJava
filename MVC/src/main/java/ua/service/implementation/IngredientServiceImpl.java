@@ -21,15 +21,18 @@ public class IngredientServiceImpl implements IngredientService{
 	}
 
 	@Override
-	public void save(String name) {
-		Ingredient ingredient = new Ingredient();
-		ingredient.setName(name);
+	public void save(Ingredient ingredient) {
 		ingredientRepository.save(ingredient);
 	}
 
 	@Override
 	public void delete(int id) {
 		ingredientRepository.delete(id);
+	}
+
+	@Override
+	public Ingredient findOne(int id) {
+		return ingredientRepository.findOne(id);
 	}
 
 }

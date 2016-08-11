@@ -5,9 +5,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import ua.entity.AmountAndIngredient;
 import ua.entity.Recipe;
 import ua.form.RecipeForm;
+import ua.repository.AmountAndIngredientRepository;
 import ua.repository.CountryRepository;
 import ua.repository.RecipeRepository;
 import ua.service.RecipeService;
@@ -20,6 +23,9 @@ public class RecipeServiceImpl implements RecipeService{
 	
 	@Autowired
 	private CountryRepository countryRepository;
+	
+	@Autowired
+	private AmountAndIngredientRepository amountAndIngredientRepository;
 	
 	@Override
 	public List<Recipe> findAll() {
@@ -52,5 +58,28 @@ public class RecipeServiceImpl implements RecipeService{
 		return form;
 	}
 
-	
+	@Override
+	public Recipe findOne(int id) {
+		return recipeRepository.findOne(id);
+	}
+
+	@Override
+	@Transactional
+	public void addIngredient(int id, int ingredId) {
+		Recipe recipe = recipeRepository.findOne(id);
+		AmountAndIngredient ingredient = amountAndIngredientRepository.findOne(ingredId);
+		recipe.getAmountAndIngredients().add(ingredient);
+	}
+
+	@Override
+	public Recipe findOneAmountInited(int id) {
+		return recipeRepository.findOneAmountInited(id);
+	}
+
+	@Override
+	@Transactional
+	public void delIngredient(int id, int ingredId) {
+		Recipe recipe = recipeRepository.findOne(id);
+		recipe.getAmountAndIngredients().removeIf((i)->i.getId()==ingredId);
+	}
 }

@@ -43,4 +43,9 @@
 		<put-attribute name="title" value="admin" />
 		<put-attribute name="body" value="/WEB-INF/views/ingredientAmountAdmin.jsp" />
 	</definition>
+	
+	<definition name="adminRecipeIngredient" extends="common">
+		<put-attribute name="title" value="admin" />
+		<put-attribute name="body" value="/WEB-INF/views/adminRecipeIngredient.jsp" />
+	</definition>
 </tiles-definitions>

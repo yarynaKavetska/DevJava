@@ -8,8 +8,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
@@ -25,10 +23,7 @@ public class AmountAndIngredient {
 	private MeasuringSystem measuringSystem;
 	
 	private int amount;
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "AmountAndIngredient_Recipe", joinColumns = 
-	@JoinColumn(name = "amountAndIngredient_id"), inverseJoinColumns = 
-	@JoinColumn(name = "recipe_id"))
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy="amountAndIngredients")
 	private List<Recipe> recipes = new ArrayList<>();
 
 	public int getId() {

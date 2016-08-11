@@ -8,8 +8,10 @@ public interface IngredientService {
 
 	List<Ingredient> findAll();
 
-	void save(String name);
+	void save(Ingredient ingredient);
 
 	void delete(int id);
+
+	Ingredient findOne(int id);
 
 }

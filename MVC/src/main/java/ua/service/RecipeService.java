@@ -14,4 +14,12 @@ public interface RecipeService {
 	void save(RecipeForm form);
 
 	RecipeForm findOneCountryInited(int id);
+
+	Recipe findOne(int id);
+
+	void addIngredient(int id, int ingredId);
+
+	Recipe findOneAmountInited(int id);
+
+	void delIngredient(int id, int ingredId);
 }
