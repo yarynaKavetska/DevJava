@@ -30,4 +30,9 @@ public class MeasuringSystemServiceImpl implements MeasuringSystemService{
 	public List<MeasuringSystem> findAll() {
 		return measuringSystemRepository.findAll();
 	}
+
+	@Override
+	public MeasuringSystem findOne(int id) {
+		return measuringSystemRepository.findOne(id);
+	}
 }

@@ -12,4 +12,6 @@ public interface MeasuringSystemService {
 
 	List<MeasuringSystem> findAll();
 
+	MeasuringSystem findOne(int id);
+
 }

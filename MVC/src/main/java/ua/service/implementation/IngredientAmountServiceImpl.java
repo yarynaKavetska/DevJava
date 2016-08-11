@@ -6,8 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ua.entity.AmountAndIngredient;
-import ua.entity.Ingredient;
-import ua.entity.MeasuringSystem;
+import ua.form.AmountForm;
 import ua.repository.AmountAndIngredientRepository;
 import ua.repository.IngredientRepository;
 import ua.repository.MeasuringSystemRepository;
@@ -36,13 +35,23 @@ public class IngredientAmountServiceImpl implements IngredientAmountService{
 	}
 
 	@Override
-	public void save(int amount, int ingredientId, int msId) {
-		MeasuringSystem system = measuringSystemRepository.findOne(msId);
-		Ingredient ingredient = ingredientRepository.findOne(ingredientId);
+	public void save(AmountForm form) {
 		AmountAndIngredient amountAndIngredient = new AmountAndIngredient();
-		amountAndIngredient.setAmount(amount);
-		amountAndIngredient.setIngredient(ingredient);
-		amountAndIngredient.setMeasuringSystem(system);
+		amountAndIngredient.setId(form.getId());
+		amountAndIngredient.setAmount(Integer.valueOf(form.getAmount()));
+		amountAndIngredient.setIngredient(form.getIngredient());
+		amountAndIngredient.setMeasuringSystem(form.getMs());
 		amountAndIngredientRepository.save(amountAndIngredient);
+	}
+
+	@Override
+	public AmountForm findOneForm(int id) {
+		AmountAndIngredient amountAndIngredient = amountAndIngredientRepository.findOneIngredientMsInited(id);
+		AmountForm form = new AmountForm();
+		form.setAmount(String.valueOf(amountAndIngredient.getAmount()));
+		form.setId(amountAndIngredient.getId());
+		form.setIngredient(amountAndIngredient.getIngredient());
+		form.setMs(amountAndIngredient.getMeasuringSystem());
+		return form;
 	}
 }

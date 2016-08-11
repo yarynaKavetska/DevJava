@@ -3,6 +3,7 @@ package ua.service;
 import java.util.List;
 
 import ua.entity.AmountAndIngredient;
+import ua.form.AmountForm;
 
 public interface IngredientAmountService {
 
@@ -10,6 +11,8 @@ public interface IngredientAmountService {
 
 	void delete(int id);
 
-	void save(int amount, int ingredientId, int msId);
+	void save(AmountForm form);
+
+	AmountForm findOneForm(int id);
 
 }
