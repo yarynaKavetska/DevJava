@@ -1,36 +1,46 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 </head>
 <body>
-	<form action="/admin/recipe" method="post">
+	<form:form action="/admin/recipe" method="post" modelAttribute="recipe">
 		<table>
 			<tr>
 				<td>
-					<select name="countryId">
+					<form:select path="country">
 						<c:forEach items="${countries}" var="country">
-							<option value="${country.id}">
-								${country.name}
-							</option>
+							<c:choose>
+								<c:when test="${recipe.country.id eq country.id}">
+									<option value="${country.id}" selected="selected">
+										${country.name}
+									</option>
+								</c:when>
+								<c:otherwise>
+									<option value="${country.id}">
+										${country.name}
+									</option>
+								</c:otherwise>
+							</c:choose>
 						</c:forEach>
-					</select>
+					</form:select>
 				</td>
 			</tr>
 			<tr>
-				<td><input name="name" placeholder="Recipe name"></td>
+				<td><form:input path="name" placeholder="Recipe name"/></td>
 			</tr>
 			<tr>
-				<td><input name="time" placeholder="HH:MM:SS"></td>
+				<td><form:input path="time" placeholder="HH:MM:SS"/></td>
 			</tr>
 			<tr>
 				<td><input type="submit"></td>
 			</tr>
 		</table>
-	</form>
+	</form:form>
 	<table>
 		<tr>
 			<th>Recipe name</th>

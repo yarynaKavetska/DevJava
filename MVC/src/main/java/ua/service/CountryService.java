@@ -6,7 +6,7 @@ import ua.entity.Country;
 
 public interface CountryService {
 
-	void save(String name);
+	void save(Country country);
 	
 	Country findByName(String name);
 	
@@ -15,4 +15,6 @@ public interface CountryService {
 	List<Country> findAll();
 
 	void delete(int id);
+
+	Country findOne(int id);
 }

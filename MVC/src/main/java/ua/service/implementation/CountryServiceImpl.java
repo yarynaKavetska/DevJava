@@ -18,9 +18,7 @@ public class CountryServiceImpl implements CountryService{
 	private CountryRepository countryRepository;
 	
 	@Override
-	public void save(String name) {
-		Country country = new Country();
-		country.setName(name);
+	public void save(Country country) {
 		countryRepository.save(country);
 	}
 
@@ -42,6 +40,11 @@ public class CountryServiceImpl implements CountryService{
 	@Override
 	public void delete(int id) {
 		countryRepository.delete(id);
+	}
+
+	@Override
+	public Country findOne(int id) {
+		return countryRepository.findOne(id);
 	}
 
 }
