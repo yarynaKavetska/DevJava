@@ -12,6 +12,9 @@
 		<form:input path="id" type="hidden"/>
 		<table>
 			<tr>
+				<td><form:errors path="name"/></td>
+			</tr>
+			<tr>
 				<td><form:input path="name"/></td>
 			</tr>
 			<tr>
