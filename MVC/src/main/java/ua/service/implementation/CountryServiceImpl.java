@@ -11,7 +11,6 @@ import ua.repository.CountryRepository;
 import ua.service.CountryService;
 
 @Service
-@Transactional
 public class CountryServiceImpl implements CountryService{
 
 	@Autowired
