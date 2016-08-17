@@ -19,7 +19,7 @@ public class MeasuringSystemController {
 	@RequestMapping("/admin/measuringSystem")
 	public String show(Model model){
 		model.addAttribute("measuringSystems", measuringSystemService.findAll());
-		return "measuringSystemIngredient";
+		return "adminMeasuringSystemIngredient";
 	}
 	
 	@RequestMapping(value="/admin/measuringSystem", method=RequestMethod.POST)

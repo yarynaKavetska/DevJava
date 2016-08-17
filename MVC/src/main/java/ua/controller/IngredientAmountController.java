@@ -47,7 +47,7 @@ public class IngredientAmountController {
 		model.addAttribute("measuringSystems", measuringSystemService.findAll())
 		.addAttribute("ingredients", ingredientService.findAll())
 		.addAttribute("ingredientAmounts", ingredientAmountService.findAll());
-		return "ingredientAmountAdmin";
+		return "adminIngredientAmount";
 	}
 	
 	@RequestMapping(value = "/admin/ingredientAmount", method=RequestMethod.POST)
@@ -59,7 +59,7 @@ public class IngredientAmountController {
 	@RequestMapping("/admin/ingredientAmount/delete/{id}")
 	public String delete(@PathVariable int id){
 		ingredientAmountService.delete(id);
-		return "ingredientAmountAdmin";
+		return "adminIngredientAmount";
 	}
 	
 	@RequestMapping("/admin/ingredientAmount/update/{id}")
@@ -68,6 +68,6 @@ public class IngredientAmountController {
 		.addAttribute("ingredients", ingredientService.findAll())
 		.addAttribute("ingredientAmounts", ingredientAmountService.findAll())
 		.addAttribute("amount", ingredientAmountService.findOneForm(id));
-		return "ingredientAmountAdmin";
+		return "adminIngredientAmount";
 	}
 }

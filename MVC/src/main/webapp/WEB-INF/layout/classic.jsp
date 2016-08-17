@@ -8,16 +8,14 @@
 <title><tiles:getAsString name="title" /></title>
 </head>
 <body>
-<header>
-    <tiles:insertAttribute name="header" />
-</header>
-	<!-- Основной контент страницы -->
+	<header>
+		<tiles:insertAttribute name="header" />
+	</header>
 	<div class="container">
 		<tiles:insertAttribute name="body" />
 	</div>
-	<div class="footer">
-		<!-- футер страницы -->
+	<footer>
 		<tiles:insertAttribute name="footer" />
-	</div>
+	</footer>
 </body>
 </html>
