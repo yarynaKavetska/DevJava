@@ -14,4 +14,6 @@ public interface IngredientService {
 
 	Ingredient findOne(int id);
 
+	Ingredient findByName(String name);
+
 }

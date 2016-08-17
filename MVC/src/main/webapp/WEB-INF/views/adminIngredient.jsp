@@ -12,6 +12,9 @@
 		<form:hidden path="id"/>
 		<table>
 			<tr>
+				<td><form:errors path="name" /></td>
+			</tr>
+			<tr>
 				<td><form:input path="name" placeholder="Ingredient name"/></td>
 			</tr>
 			<tr>
