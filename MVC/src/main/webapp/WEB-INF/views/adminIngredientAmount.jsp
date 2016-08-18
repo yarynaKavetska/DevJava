@@ -44,6 +44,31 @@
 			</tr>
 		</table>
 	</form:form>
+	<form:form action="/admin/ingredientAmount" method="get" modelAttribute="filter">
+		<table>
+			<c:forEach items="${ingredients}" var="ingredient">
+				<tr>
+					<td><form:checkbox path="ingredientId" value="${ingredient.id}"/></td>
+					<td>${ingredient.name}</td>
+				</tr>
+			</c:forEach>
+			<tr><th>Measuring system</th></tr>
+			<c:forEach items="${measuringSystems}" var="measuringSystem">
+				<tr>
+					<td><form:checkbox path="msId" value="${measuringSystem.id}"/></td>
+					<td>${measuringSystem.name}</td>
+				</tr>
+			</c:forEach>
+			<tr><th>Amount</th></tr>
+			<tr>
+				<td><form:input path="min"/></td>
+				<td><form:input path="max"/></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="Filter"></td>
+			</tr>
+		</table>
+	</form:form>
 	<table>
 		<tr>
 			<th>Amount</th>

@@ -36,7 +36,7 @@ public class CountryController {
 	}
 
 	@RequestMapping("/admin/country")
-	public String showCountry(Model model, @PageableDefault(size=5) Pageable pageable){
+	public String showCountry(Model model, @PageableDefault(size=5,sort="name") Pageable pageable){
 		model.addAttribute("countries", countryService.findAll(pageable));
 		return "adminCountry";
 	}

@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ua.entity.AmountAndIngredient;
+import ua.form.AmountFilter;
 import ua.form.AmountForm;
 import ua.repository.AmountAndIngredientRepository;
 import ua.repository.IngredientRepository;
 import ua.repository.MeasuringSystemRepository;
 import ua.service.IngredientAmountService;
+import ua.specification.AmountFilterAdapter;
 
 @Service
 public class IngredientAmountServiceImpl implements IngredientAmountService{
@@ -53,5 +55,10 @@ public class IngredientAmountServiceImpl implements IngredientAmountService{
 		form.setIngredient(amountAndIngredient.getIngredient());
 		form.setMs(amountAndIngredient.getMeasuringSystem());
 		return form;
+	}
+
+	@Override
+	public List<AmountAndIngredient> findAll(AmountFilter amountFilter) {
+		return amountAndIngredientRepository.findAll(new AmountFilterAdapter(amountFilter));
 	}
 }

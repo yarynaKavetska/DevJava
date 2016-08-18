@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import ua.entity.Ingredient;
 import ua.entity.MeasuringSystem;
+import ua.form.AmountFilter;
 import ua.form.AmountForm;
 import ua.service.IngredientAmountService;
 import ua.service.IngredientService;
@@ -43,10 +44,11 @@ public class IngredientAmountController {
 	}
 	
 	@RequestMapping("/admin/ingredientAmount")
-	public String show(Model model){
+	public String show(Model model, @ModelAttribute("filter") AmountFilter amountFilter){
 		model.addAttribute("measuringSystems", measuringSystemService.findAll())
 		.addAttribute("ingredients", ingredientService.findAll())
-		.addAttribute("ingredientAmounts", ingredientAmountService.findAll());
+		.addAttribute("ingredientAmounts", ingredientAmountService.findAll(amountFilter))
+		.addAttribute("filter", amountFilter);
 		return "adminIngredientAmount";
 	}
 	
