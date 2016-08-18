@@ -1,4 +1,4 @@
-package ua.specification;
+package ua.service.implementation.specification;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,6 @@ import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Expression;
-import javax.persistence.criteria.Fetch;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
@@ -14,8 +13,6 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.domain.Specifications;
 
 import ua.entity.AmountAndIngredient;
-import ua.entity.Ingredient;
-import ua.entity.MeasuringSystem;
 import ua.form.AmountFilter;
 
 public class AmountFilterAdapter implements Specification<AmountAndIngredient>{

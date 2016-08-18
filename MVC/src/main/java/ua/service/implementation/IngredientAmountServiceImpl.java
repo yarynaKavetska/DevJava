@@ -12,7 +12,7 @@ import ua.repository.AmountAndIngredientRepository;
 import ua.repository.IngredientRepository;
 import ua.repository.MeasuringSystemRepository;
 import ua.service.IngredientAmountService;
-import ua.specification.AmountFilterAdapter;
+import ua.service.implementation.specification.AmountFilterAdapter;
 
 @Service
 public class IngredientAmountServiceImpl implements IngredientAmountService{
