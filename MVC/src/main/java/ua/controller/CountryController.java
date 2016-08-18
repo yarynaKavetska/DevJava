@@ -3,6 +3,8 @@ package ua.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -34,8 +36,8 @@ public class CountryController {
 	}
 
 	@RequestMapping("/admin/country")
-	public String showCountry(Model model){
-		model.addAttribute("countries", countryService.findAll());
+	public String showCountry(Model model, @PageableDefault(size=5) Pageable pageable){
+		model.addAttribute("countries", countryService.findAll(pageable));
 		return "adminCountry";
 	}
 	
@@ -46,16 +48,16 @@ public class CountryController {
 	}
 	
 	@RequestMapping("/admin/country/update/{id}")
-	public String updateCountry(@PathVariable int id, Model model){
+	public String updateCountry(@PathVariable int id, Model model,  @PageableDefault(size=5) Pageable pageable){
 		model.addAttribute("country", countryService.findOne(id));
-		model.addAttribute("countries", countryService.findAll());
+		model.addAttribute("countries", countryService.findAll(pageable));
 		return "adminCountry";
 	}
 	
 	@RequestMapping(value= "/admin/country", method=RequestMethod.POST)
-	public String showCountry(@ModelAttribute("country") @Valid Country country, BindingResult br, Model model){
+	public String showCountry(@ModelAttribute("country") @Valid Country country, BindingResult br, Model model, @PageableDefault(size=5) Pageable pageable){
 		if(br.hasErrors()){
-			model.addAttribute("countries", countryService.findAll());
+			model.addAttribute("countries", countryService.findAll(pageable));
 			return "adminCountry";
 		}
 		countryService.save(country);

@@ -26,7 +26,7 @@
 		<tr>
 			<th>Country name</th>
 		</tr>
-		<c:forEach items="${countries}" var="country">
+		<c:forEach items="${countries.content}" var="country">
 			<tr>
 				<td>${country.name}</td>
 				<td>
@@ -37,6 +37,26 @@
 				</td>
 			</tr>
 		</c:forEach>
+		<tr>
+			<td>
+				<c:if test="${countries.number ne 0}">
+					<a href="/admin/country?page=${countries.number}&size=${countries.size}">previous</a>
+				</c:if>
+			</td>
+			<td>
+				<c:if test="${countries.number ne countries.totalPages-1}">
+					<a href="/admin/country?page=${countries.number+2}&size=${countries.size}">next</a>
+				</c:if>
+			</td>
+		</tr>
+	</table>
+	<table>
+		<tr>
+			<td><a href="/admin/country?page=1&size=1">1</a></td>
+			<td><a href="/admin/country?page=1&size=5">5</a></td>
+			<td><a href="/admin/country?page=1&size=10">10</a></td>
+			<td><a href="/admin/country?page=1&size=20">20</a></td>
+		</tr>
 	</table>
 </body>
 </html>
