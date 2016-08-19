@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.PreRemove;
 
 @Entity
 public class Country {
@@ -21,6 +22,13 @@ public class Country {
 	private String name;
 	@OneToMany(mappedBy="country")
 	private List<Recipe> recipes = new ArrayList<>();
+	
+	@PreRemove
+	public void removeAllChilds(){
+		for (Recipe recipe : recipes) {
+			recipe.setCountry(null);
+		}
+	}
 	
 	public long getPopulation() {
 		return population;
