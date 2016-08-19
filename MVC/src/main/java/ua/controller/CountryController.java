@@ -17,19 +17,19 @@ public class CountryController {
 	private CountryService countryService;
 
 	@RequestMapping("/admin/country")
-	public String showCountry(Model model){
+	public String show(Model model){
 		model.addAttribute("countries", countryService.findAll());
 		return "adminCountry";
 	}
 	
 	@RequestMapping("/admin/country/delete/{id}")
-	public String deleteCountry(@PathVariable int id){
+	public String delete(@PathVariable int id){
 		countryService.delete(id);
 		return "redirect:/admin/country";
 	}
 	
 	@RequestMapping(value= "/admin/country", method=RequestMethod.POST)
-	public String showCountry(@RequestParam String name){
+	public String save(@RequestParam("name") String name){
 		countryService.save(name);
 		return "redirect:/admin/country";
 	}
