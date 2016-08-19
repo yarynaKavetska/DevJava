@@ -29,7 +29,7 @@ public class CountryController {
 	}
 	
 	@RequestMapping(value= "/admin/country", method=RequestMethod.POST)
-	public String save(@RequestParam("name") String name){
+	public String save(@RequestParam String name){
 		countryService.save(name);
 		return "redirect:/admin/country";
 	}
