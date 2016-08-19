@@ -9,7 +9,7 @@
 </head>
 <body>
 	<form:form action="/admin/country" method="post" modelAttribute="country">
-		<form:input path="id" type="hidden"/>
+		<form:hidden path="id"/>
 		<table>
 			<tr>
 				<td><form:errors path="name"/></td>
