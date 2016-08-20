@@ -115,6 +115,7 @@ public class Main {
 				"ingredient");
 		Predicate ingrPred = cb.equal(ingJoin.get("name"), "Potato");
 		Predicate all = eq;
+		if(in!=null)
 		all = cb.or(all, in);
 		all = cb.or(all, be);
 		Predicate and = cb.and(amPred, msPred, ingrPred);

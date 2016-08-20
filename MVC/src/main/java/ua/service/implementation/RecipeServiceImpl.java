@@ -3,6 +3,8 @@ package ua.service.implementation;
 import java.time.LocalTime;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +17,7 @@ import ua.service.RecipeService;
 @Service
 public class RecipeServiceImpl implements RecipeService{
 
-	@Autowired
+	@Resource
 	private RecipeRepository recipeRepository;
 	
 	@Autowired
@@ -40,6 +42,4 @@ public class RecipeServiceImpl implements RecipeService{
 		recipe.setTime(LocalTime.parse(time));
 		recipeRepository.save(recipe);
 	}
-
-	
 }
