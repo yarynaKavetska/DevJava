@@ -23,6 +23,10 @@ public class Recipe {
 	
 	private LocalTime time;
 	
+	private String path;
+	
+	private int version;
+	
 	private String name;
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Country country;
@@ -32,6 +36,22 @@ public class Recipe {
 	@JoinColumn(name = "amountAndIngredient_id"))
 	private List<AmountAndIngredient> amountAndIngredients= new ArrayList<>();
 	
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+
 	public LocalTime getTime() {
 		return time;
 	}

@@ -2,12 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-</head>
-<body>
+	
 	<form:form action="/admin/ingredient" method="post"
 		modelAttribute="ingredient">
 		<form:hidden path="id" />
@@ -64,5 +59,3 @@
 			<td><a href="/admin/ingredient?page=1&size=10&name=${param.name}">10</a></td>
 		</tr>
 	</table>
-</body>
-</html>

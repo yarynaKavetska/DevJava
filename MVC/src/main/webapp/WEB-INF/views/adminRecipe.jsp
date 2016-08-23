@@ -8,8 +8,11 @@
 <meta charset="UTF-8">
 </head>
 <body>
-	<form:form action="/admin/recipe" method="post" modelAttribute="recipe">
+	<form:form action="/admin/recipe" method="post" modelAttribute="recipe" 
+	enctype="multipart/form-data">
 		<form:input path="id" type="hidden"/>
+		<form:hidden path="version"/>
+		<form:hidden path="path"/>
 		<table>
 			<tr>
 				<td>
@@ -38,6 +41,9 @@
 				<td><form:input path="time" placeholder="HH:MM:SS"/></td>
 			</tr>
 			<tr>
+				<td><input type="file" name="file"></td>
+			</tr>
+			<tr>
 				<td><input type="submit"></td>
 			</tr>
 		</table>
@@ -49,6 +55,7 @@
 		<c:forEach items="${recipes}" var="recipe">
 			<tr>
 				<td>${recipe.name}</td>
+				<td><img src="/images/recipe/${recipe.id}${recipe.path}?version=${recipe.version}" height="40" width="40"/></td>
 				<td>
 					<a href="/admin/recipe/delete/${recipe.id}">delete</a>
 				</td>

@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8">
+<link rel="stylesheet" href="/resources/css/style.css"/>
 <title><tiles:getAsString name="title" /></title>
 </head>
 <body>
