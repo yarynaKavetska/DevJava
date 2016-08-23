@@ -23,6 +23,7 @@ public class Category {
 	private int level;
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Category parent;
+	
 	@OneToMany
 	private List<Category> childs = new ArrayList<>();
 	

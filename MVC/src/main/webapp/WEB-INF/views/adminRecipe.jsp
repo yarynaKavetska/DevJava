@@ -13,9 +13,7 @@
 				<td>
 					<select name="countryId">
 						<c:forEach items="${countries}" var="country">
-							<option value="${country.id}">
-								${country.name}
-							</option>
+							<option value="${country.id}">${country.name}</option>
 						</c:forEach>
 					</select>
 				</td>
