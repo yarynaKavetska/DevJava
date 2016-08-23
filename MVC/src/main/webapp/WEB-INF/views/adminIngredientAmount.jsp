@@ -2,12 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-</head>
-<body>
+<a href="/admin">Back to admin page</a>
 	<form:form action="/admin/ingredientAmount" method="post"
 		modelAttribute="amount">
 		<form:hidden path="id" />
@@ -44,31 +39,33 @@
 			</tr>
 		</table>
 	</form:form>
-	<form:form action="/admin/ingredientAmount" method="get" modelAttribute="filter">
-		<table>
-			<c:forEach items="${ingredients}" var="ingredient">
+	<c:if test="${filter ne null}">
+		<form:form action="/admin/ingredientAmount" method="get" modelAttribute="filter">
+			<table>
+				<c:forEach items="${ingredients}" var="ingredient">
+					<tr>
+						<td><form:checkbox path="ingredientId" value="${ingredient.id}"/></td>
+						<td>${ingredient.name}</td>
+					</tr>
+				</c:forEach>
+				<tr><th>Measuring system</th></tr>
+				<c:forEach items="${measuringSystems}" var="measuringSystem">
+					<tr>
+						<td><form:checkbox path="msId" value="${measuringSystem.id}"/></td>
+						<td>${measuringSystem.name}</td>
+					</tr>
+				</c:forEach>
+				<tr><th>Amount</th></tr>
 				<tr>
-					<td><form:checkbox path="ingredientId" value="${ingredient.id}"/></td>
-					<td>${ingredient.name}</td>
+					<td><form:input path="min"/></td>
+					<td><form:input path="max"/></td>
 				</tr>
-			</c:forEach>
-			<tr><th>Measuring system</th></tr>
-			<c:forEach items="${measuringSystems}" var="measuringSystem">
 				<tr>
-					<td><form:checkbox path="msId" value="${measuringSystem.id}"/></td>
-					<td>${measuringSystem.name}</td>
+					<td><input type="submit" value="Filter"></td>
 				</tr>
-			</c:forEach>
-			<tr><th>Amount</th></tr>
-			<tr>
-				<td><form:input path="min"/></td>
-				<td><form:input path="max"/></td>
-			</tr>
-			<tr>
-				<td><input type="submit" value="Filter"></td>
-			</tr>
-		</table>
-	</form:form>
+			</table>
+		</form:form>
+	</c:if>
 	<table>
 		<tr>
 			<th>Amount</th>
@@ -89,5 +86,3 @@
 			</tr>
 		</c:forEach>
 	</table>
-</body>
-</html>

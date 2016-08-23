@@ -60,10 +60,10 @@ public class RecipeServiceImpl implements RecipeService{
 			file = new File(file, recipe.getId()+extension);
 			try {
 				form.getFile().transferTo(file);
+				recipe.setPath(extension);
+				recipe.setVersion(form.getVersion()+1);
 			} catch (IllegalStateException | IOException e) {
 			}
-			recipe.setPath(extension);
-			recipe.setVersion(form.getVersion()+1);
 			recipeRepository.save(recipe);
 		}
 	}

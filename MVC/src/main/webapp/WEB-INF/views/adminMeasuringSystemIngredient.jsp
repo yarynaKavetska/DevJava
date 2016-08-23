@@ -1,12 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-</head>
-<body>
+<a href="/admin">Back to admin page</a>
 	<form action="/admin/measuringSystem" method="post">
 		<table>
 			<tr>
@@ -32,5 +27,3 @@
 			</tr>
 		</c:forEach>
 	</table>
-</body>
-</html>

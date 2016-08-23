@@ -48,7 +48,7 @@ public class CountryController {
 	}
 	
 	@RequestMapping("/admin/country/update/{id}")
-	public String updateCountry(@PathVariable int id, Model model,  @PageableDefault(size=5) Pageable pageable){
+	public String updateCountry(@PathVariable int id, Model model, @PageableDefault(size=5) Pageable pageable){
 		model.addAttribute("country", countryService.findOne(id));
 		model.addAttribute("countries", countryService.findAll(pageable));
 		return "adminCountry";

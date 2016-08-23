@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-	
+<a href="/admin">Back to admin page</a>
 	<form:form action="/admin/ingredient" method="post"
 		modelAttribute="ingredient">
 		<form:hidden path="id" />

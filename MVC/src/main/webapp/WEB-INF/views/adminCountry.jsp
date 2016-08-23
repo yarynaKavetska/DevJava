@@ -2,12 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-</head>
-<body>
+
+<a href="/admin">Back to admin page</a>
 	<form:form action="/admin/country" method="post" modelAttribute="country">
 		<form:hidden path="id"/>
 		<table>
@@ -44,7 +40,7 @@
 				</c:if>
 			</td>
 			<td>
-				<c:if test="${countries.number ne countries.totalPages-1}">
+				<c:if test="${countries.number ne countries.totalPages}">
 					<a href="/admin/country?page=${countries.number+2}&size=${countries.size}">next</a>
 				</c:if>
 			</td>
@@ -58,5 +54,3 @@
 			<td><a href="/admin/country?page=1&size=20">20</a></td>
 		</tr>
 	</table>
-</body>
-</html>

@@ -11,8 +11,9 @@ import ua.entity.AmountAndIngredient;
 
 public interface AmountAndIngredientRepository extends JpaRepository<AmountAndIngredient, Integer>, JpaSpecificationExecutor<AmountAndIngredient>{
 
-	@Query("SELECT ai FROM AmountAndIngredient ai LEFT JOIN FETCH "
-			+ "ai.measuringSystem LEFT JOIN FETCH ai.ingredient")
+	@Query(value="SELECT ai FROM AmountAndIngredient ai LEFT JOIN FETCH "
+			+ "ai.measuringSystem LEFT JOIN FETCH ai.ingredient"
+			/*countQuery="SELECT count(ai.id) FROM AmountAndIngredient ai"*/)
 	List<AmountAndIngredient> findAll();
 	
 	@Query("SELECT ai FROM AmountAndIngredient ai LEFT JOIN FETCH "
