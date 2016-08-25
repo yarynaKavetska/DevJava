@@ -13,11 +13,11 @@
 	</http>
 
 	<beans:bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
-		<beans:constructor-arg name="strength" value="10"/>
+		<beans:constructor-arg name="strength" value="14"/>
 	</beans:bean>
 	<authentication-manager>
 		<authentication-provider user-service-ref="userDetailsService">
-			<password-encoder ref="encoder"></password-encoder>
+			<password-encoder ref="encoder"/>
 		</authentication-provider>
 	</authentication-manager>
 </beans:beans>

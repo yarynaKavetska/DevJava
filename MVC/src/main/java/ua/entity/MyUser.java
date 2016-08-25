@@ -28,9 +28,11 @@ public class MyUser implements UserDetails{
 	private String login;
 	
 	private String password;
+	
 	@Enumerated
 	private Role role;
 	
+
 	public int getId() {
 		return id;
 	}
@@ -96,5 +98,4 @@ public class MyUser implements UserDetails{
 	public boolean isEnabled() {
 		return true;
 	}
-
 }
