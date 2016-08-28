@@ -44,4 +44,9 @@ public class CountryServiceImpl implements CountryService{
 		countryRepository.delete(id);
 	}
 
+	@Override
+	public List<Country> findWithRecipes() {
+		return countryRepository.findWithRecipes();
+	}
+
 }

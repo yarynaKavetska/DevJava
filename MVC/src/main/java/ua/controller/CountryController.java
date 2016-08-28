@@ -33,4 +33,10 @@ public class CountryController {
 		countryService.save(name);
 		return "redirect:/admin/country";
 	}
+	
+	@RequestMapping("/admin/country/recipe")
+	public String showCountry(Model model){
+		model.addAttribute("countries", countryService.findWithRecipes());
+		return "adminCountryRecipe";
+	}
 }

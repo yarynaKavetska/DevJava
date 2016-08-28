@@ -13,5 +13,6 @@
 <a href="/admin/measuringSystem">Measuring system</a>
 <a href="/admin/ingredientAmount">Ingredient and amount</a>
 <a href="/admin/recipe">Recipe</a>
+<a href="/admin/country/recipe">Recipe and country</a>
 </body>
 </html>
