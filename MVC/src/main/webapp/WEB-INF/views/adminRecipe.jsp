@@ -40,13 +40,13 @@
 	<div class="col-md-6">Recipe name</div>
 	<c:forEach items="${recipes}" var="recipe">
 		<div class="col-md-12">
-			<div class="col-md-2">${recipe.name}</div>
-			<div class="col-md-4"><img
+			<div class="col-md-1">${recipe.name}</div>
+			<div class="col-md-2"><img
 				src="/images/recipe/${recipe.id}${recipe.path}?version=${recipe.version}"
-				class="img-thumbnail" width="127" /></div>
-			<div class="col-md-2"><a href="/admin/recipe/delete/${recipe.id}">delete</a></div>
-			<div class="col-md-2"><a href="/admin/recipe/update/${recipe.id}">update</a></div>
-			<div class="col-md-2"><a href="/admin/recipe/${recipe.id}">add ingredients</a></div>
+				class="img-thumbnail" width="100" /></div>
+			<div class="col-md-1"><a href="/admin/recipe/delete/${recipe.id}">delete</a></div>
+			<div class="col-md-1"><a href="/admin/recipe/update/${recipe.id}">update</a></div>
+			<div class="col-md-1"><a href="/admin/recipe/${recipe.id}">add ingredients</a></div>
 		</div>
 	</c:forEach>
 </div>

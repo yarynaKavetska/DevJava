@@ -55,7 +55,7 @@ public class CountryController {
 	}
 	
 	@RequestMapping(value= "/admin/country", method=RequestMethod.POST)
-	public String showCountry(@ModelAttribute("country") @Valid Country country, BindingResult br, Model model, @PageableDefault(size=5) Pageable pageable){
+	public String save(@ModelAttribute("country") @Valid Country country, BindingResult br, Model model, @PageableDefault(size=5) Pageable pageable){
 		if(br.hasErrors()){
 			model.addAttribute("countries", countryService.findAll(pageable));
 			return "adminCountry";
