@@ -41,5 +41,5 @@
 	</bean>
 	<mvc:resources mapping="/images/**" location="file:${catalina.home}/images/" cache-period="3600"/>
 	<mvc:resources mapping="/resources/**" location="/resources/" cache-period="3600"/>
-	
+	<security:global-method-security secured-annotations="enabled" pre-post-annotations="enabled"/>
 </beans>

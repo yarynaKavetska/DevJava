@@ -10,6 +10,9 @@
 			<input name="password" type="password">
 		</div>
 		<div class="col-md-12">
+			<input type="checkbox" name="remember-me"> remember me
+		</div>
+		<div class="col-md-12">
 			<input type="submit" value="login">
 		</div>
 	</form:form>

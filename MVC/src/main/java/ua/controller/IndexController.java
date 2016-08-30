@@ -1,6 +1,9 @@
 package ua.controller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,7 +20,12 @@ public class IndexController {
 	private MyUserService service;
 	
 	@RequestMapping("/")
-	public String showIndex(MyUser user, Model model){
+	public String showIndex(MyUser user, Model model, Principal principal){
+		if(principal!=null){
+			System.out.println(principal.getName());
+		}else{
+			System.out.println("principal is null");
+		}
 		model.addAttribute("user", user);
 		return "index";
 	}
@@ -27,7 +35,7 @@ public class IndexController {
 		service.save(user);
 		return "redirect:/";
 	}
-	
+	@Secured(value="ROLE_ADMIN")
 	@RequestMapping("/admin")
 	public String showAdmin() {
 		return "adminPanel";

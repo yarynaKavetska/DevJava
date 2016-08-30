@@ -5,19 +5,21 @@
            http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
            http://www.springframework.org/schema/security
            http://www.springframework.org/schema/security/spring-security.xsd">
-	
+
 	<http use-expressions="true">
-		<form-login login-page="/" login-processing-url="/login" authentication-failure-url="/?fail=true"/>
-		<logout logout-url="/logout" logout-success-url="/"/>
+		<form-login login-page="/login" login-processing-url="/login"
+			authentication-failure-url="/?fail=true" />
+		<logout logout-url="/logout" logout-success-url="/" />
 		<csrf />
 	</http>
 
-	<beans:bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
-		<beans:constructor-arg name="strength" value="14"/>
+	<beans:bean id="encoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+		<beans:constructor-arg name="strength" value="14" />
 	</beans:bean>
 	<authentication-manager>
 		<authentication-provider user-service-ref="userDetailsService">
-			<password-encoder ref="encoder"/>
+			<password-encoder ref="encoder" />
 		</authentication-provider>
 	</authentication-manager>
 </beans:beans>
