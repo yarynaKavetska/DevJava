@@ -10,7 +10,7 @@
 		<form-login login-page="/login" login-processing-url="/login"
 			authentication-failure-url="/?fail=true" />
 		<logout logout-url="/logout" logout-success-url="/" />
-		<csrf />
+		<csrf disabled="true"/>
 	</http>
 
 	<beans:bean id="encoder"
