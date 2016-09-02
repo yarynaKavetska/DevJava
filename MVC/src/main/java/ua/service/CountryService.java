@@ -17,4 +17,6 @@ public interface CountryService {
 	void delete(int id);
 
 	List<Country> findWithRecipes();
+	
+	Country findOne(int id);
 }

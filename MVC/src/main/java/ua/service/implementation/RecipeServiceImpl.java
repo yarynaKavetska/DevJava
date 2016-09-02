@@ -8,8 +8,8 @@ import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ua.entity.Country;
 import ua.entity.Recipe;
+import ua.form.RecipeForm;
 import ua.repository.CountryRepository;
 import ua.repository.RecipeRepository;
 import ua.service.RecipeService;
@@ -34,12 +34,23 @@ public class RecipeServiceImpl implements RecipeService{
 	}
 
 	@Override
-	public void save(String name, String time, int countryId) {
+	public void save(RecipeForm form) {
 		Recipe recipe = new Recipe();
-		Country country = countryRepository.findOne(countryId);
-		recipe.setCountry(country);
-		recipe.setName(name);
-		recipe.setTime(LocalTime.parse(time));
+		recipe.setCountry(form.getCountry());
+		recipe.setName(form.getName());
+		recipe.setTime(LocalTime.parse(form.getTime()));
+		recipe.setId(form.getId());
 		recipeRepository.save(recipe);
+	}
+
+	@Override
+	public RecipeForm findForForm(int id) {
+		Recipe recipe = recipeRepository.findOneCountryInited(id);
+		RecipeForm form = new RecipeForm();
+		form.setId(recipe.getId());
+		form.setCountry(recipe.getCountry());
+		form.setName(recipe.getName());
+		form.setTime(recipe.getTime().toString());
+		return form;
 	}
 }

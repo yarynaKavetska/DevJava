@@ -49,4 +49,9 @@ public class CountryServiceImpl implements CountryService{
 		return countryRepository.findWithRecipes();
 	}
 
+	@Override
+	public Country findOne(int id) {
+		return countryRepository.findOne(id);
+	}
+
 }
