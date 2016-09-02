@@ -18,6 +18,4 @@ public class CountryEditor extends PropertyEditorSupport{
 		Country country = countryService.findOne(Integer.valueOf(text));
 		setValue(country);
 	}
-	
-	
 }

@@ -28,6 +28,7 @@ public class RecipeController {
 	@InitBinder
 	protected void initBinder(WebDataBinder binder){
 	   binder.registerCustomEditor(Country.class, new CountryEditor(countryService));
+	   
 	}
 	
 	@ModelAttribute("form")
