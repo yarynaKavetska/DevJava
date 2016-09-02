@@ -12,17 +12,17 @@
 		<form:hidden path="id" />
 		<table>
 			<tr>
-				<td><form:select path="country" items="${countries}" itemLabel="name" itemValue="id">
-<%-- 						<c:forEach items="${countries}" var="country"> --%>
-<%-- 							<c:choose> --%>
-<%-- 								<c:when test="${country.id eq form.country.id}"> --%>
-<%-- 									<option value="${country.id}" selected="selected">${country.name}</option> --%>
-<%-- 								</c:when> --%>
-<%-- 								<c:otherwise> --%>
-<%-- 									<option value="${country.id}">${country.name}</option> --%>
-<%-- 								</c:otherwise> --%>
-<%-- 							</c:choose> --%>
-<%-- 						</c:forEach> --%>
+				<td><form:select path="country">
+						<c:forEach items="${countries}" var="country">
+							<c:choose>
+								<c:when test="${country.id eq form.country.id}">
+									<option value="${country.id}" selected="selected">${country.name}</option>
+								</c:when>
+								<c:otherwise>
+									<option value="${country.id}">${country.name}</option>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
 					</form:select></td>
 			</tr>
 			<tr>
