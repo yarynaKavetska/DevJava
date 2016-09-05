@@ -26,7 +26,7 @@ public class RecipeFormValidator implements Validator{
 	@Override
 	public void validate(Object target, Errors errors) {
 		RecipeForm form = (RecipeForm) target;
-		if(form.getId()!=0)if(recipeService.findByName(form.getName())!=null){
+		if(form.getId()==0)if(recipeService.findByName(form.getName())!=null){
 			errors.rejectValue("name", "", "Recipe already exists");
 		}
 		Pattern p = Pattern.compile("^[0-9]{2,2}:[0-9]{2,2}:[0-9]{2,2}$");
