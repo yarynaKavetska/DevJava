@@ -53,4 +53,9 @@ public class RecipeServiceImpl implements RecipeService{
 		form.setTime(recipe.getTime().toString());
 		return form;
 	}
+
+	@Override
+	public Recipe findByName(String name) {
+		return recipeRepository.findByName(name);
+	}
 }

@@ -1,8 +1,11 @@
 package ua.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,6 +18,7 @@ import ua.form.RecipeForm;
 import ua.service.CountryService;
 import ua.service.RecipeService;
 import ua.service.implementation.editor.CountryEditor;
+import ua.service.implementation.validator.RecipeFormValidator;
 
 @Controller
 public class RecipeController {
@@ -28,7 +32,7 @@ public class RecipeController {
 	@InitBinder("form")
 	protected void initBinder(WebDataBinder binder){
 	   binder.registerCustomEditor(Country.class, new CountryEditor(countryService));
-	   
+	   binder.setValidator(new RecipeFormValidator(recipeService));
 	}
 	
 	@ModelAttribute("form")
@@ -44,7 +48,12 @@ public class RecipeController {
 	}
 	
 	@RequestMapping(value="/admin/recipe", method=RequestMethod.POST)
-	public String save(@ModelAttribute("form") RecipeForm form){
+	public String save(@ModelAttribute("form") @Valid RecipeForm form, BindingResult br, Model model){
+		if(br.hasErrors()){
+			model.addAttribute("recipes", recipeService.findAll());
+			model.addAttribute("countries", countryService.findAll());
+			return "adminRecipe";
+		}
 		recipeService.save(form);
 		return "redirect:/admin/recipe";
 	}

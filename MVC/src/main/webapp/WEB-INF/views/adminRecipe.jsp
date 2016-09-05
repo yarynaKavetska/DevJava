@@ -9,10 +9,12 @@
 </head>
 <body>
 	<form:form action="/admin/recipe" method="post" modelAttribute="form">
+		<form:errors path="*"/>
 		<form:hidden path="id" />
 		<table>
 			<tr>
 				<td><form:select path="country">
+				<option value="0">Country</option>
 						<c:forEach items="${countries}" var="country">
 							<c:choose>
 								<c:when test="${country.id eq form.country.id}">
@@ -26,7 +28,13 @@
 					</form:select></td>
 			</tr>
 			<tr>
+				<td><form:errors path="name"/></td>
+			</tr>
+			<tr>
 				<td><form:input path="name" placeholder="Recipe name" /></td>
+			</tr>
+			<tr>
+				<td><form:errors path="time"/></td>
 			</tr>
 			<tr>
 				<td><form:input path="time" placeholder="HH:MM:SS" /></td>

@@ -11,4 +11,6 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer>{
 	@Query("SELECT r FROM Recipe r LEFT JOIN FETCH r.country WHERE r.id=:id")
 	Recipe findOneCountryInited(@Param("id")int id);
 
+	Recipe findByName(String name);
+
 }

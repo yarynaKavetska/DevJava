@@ -15,4 +15,6 @@ public interface RecipeService {
 
 	RecipeForm findForForm(int id);
 
+	Recipe findByName(String name);
+
 }
