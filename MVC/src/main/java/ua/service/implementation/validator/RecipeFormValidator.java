@@ -13,6 +13,7 @@ import ua.service.RecipeService;
 public class RecipeFormValidator implements Validator{
 	
 	private final RecipeService recipeService;
+	private static final Pattern p = Pattern.compile("^[0-9]{2,2}:[0-9]{2,2}:[0-9]{2,2}$");
 	
 	public RecipeFormValidator(RecipeService recipeService) {
 		this.recipeService = recipeService;
@@ -29,7 +30,6 @@ public class RecipeFormValidator implements Validator{
 		if(form.getId()==0)if(recipeService.findByName(form.getName())!=null){
 			errors.rejectValue("name", "", "Recipe already exists");
 		}
-		Pattern p = Pattern.compile("^[0-9]{2,2}:[0-9]{2,2}:[0-9]{2,2}$");
 		Matcher m = p.matcher(form.getTime());
 		if(!m.matches()){
 			errors.rejectValue("time", "", "Time format is hh:mm:ss");
