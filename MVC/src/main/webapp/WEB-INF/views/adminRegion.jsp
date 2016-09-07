@@ -61,9 +61,7 @@ $(function() {
 		});
 	});
 });
-
 </script>
-<input name="${_csrf.parameterName}" value="${_csrf.token}" type="hidden">
 <button id="show">Show form</button>
 <button id="hide">Hide form</button>
 <ul id="content">

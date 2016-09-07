@@ -30,8 +30,8 @@ public class RegionController {
 	}
 	
 	@RequestMapping(value = "/admin/region/{id}.json", method=RequestMethod.GET)
-	public @ResponseBody Region findOne(@PathVariable int id){
-		return regionRepository.findOne(id);
+	public @ResponseBody Region findOne(@PathVariable int id, Region region){
+		return region;
 	}
 	
 	@RequestMapping(value = "/admin/region.json", method=RequestMethod.PUT)
