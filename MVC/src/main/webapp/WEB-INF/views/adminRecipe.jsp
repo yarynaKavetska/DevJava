@@ -9,18 +9,18 @@
 	<form:hidden path="version" />
 	<form:hidden path="path" />
 	<div class="row">
-		<form:select path="country">
-			<c:forEach items="${countries}" var="country">
-				<c:choose>
-					<c:when test="${recipe.country.id eq country.id}">
-						<option value="${country.id}" selected="selected">
-							${country.name}</option>
-					</c:when>
-					<c:otherwise>
-						<option value="${country.id}">${country.name}</option>
-					</c:otherwise>
-				</c:choose>
-			</c:forEach>
+		<form:select path="country" items="${countries}" itemLabel="name" itemValue="id">
+<%-- 			<c:forEach items="${countries}" var="country"> --%>
+<%-- 				<c:choose> --%>
+<%-- 					<c:when test="${recipe.country.id eq country.id}"> --%>
+<%-- 						<option value="${country.id}" selected="selected"> --%>
+<%-- 							${country.name}</option> --%>
+<%-- 					</c:when> --%>
+<%-- 					<c:otherwise> --%>
+<%-- 						<option value="${country.id}">${country.name}</option> --%>
+<%-- 					</c:otherwise> --%>
+<%-- 				</c:choose> --%>
+<%-- 			</c:forEach> --%>
 		</form:select>
 	</div>
 	<div class="row">

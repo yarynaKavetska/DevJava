@@ -1,6 +1,9 @@
 package ua.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomCollectionEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
@@ -28,6 +31,13 @@ public class RecipeController {
 	@InitBinder("recipe")
 	protected void initBinder(WebDataBinder binder){
 		binder.registerCustomEditor(Country.class, new CountryEditor(countryService));
+		binder.registerCustomEditor(List.class, "countries", new CustomCollectionEditor(List.class){
+			@Override
+            protected Object convertElement(Object element){
+                Integer id = (Integer) element;
+                return id != null ? countryService.findOne(id) : null;
+            }
+		});
 	}
 	
 	@ModelAttribute("recipe")
