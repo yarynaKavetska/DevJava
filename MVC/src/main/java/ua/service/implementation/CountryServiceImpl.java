@@ -3,6 +3,8 @@ package ua.service.implementation;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,9 +20,7 @@ public class CountryServiceImpl implements CountryService{
 	private CountryRepository countryRepository;
 	
 	@Override
-	public void save(String name) {
-		Country country = new Country();
-		country.setName(name);
+	public void save(Country country) {
 		countryRepository.save(country);
 	}
 
@@ -52,6 +52,11 @@ public class CountryServiceImpl implements CountryService{
 	@Override
 	public Country findOne(int id) {
 		return countryRepository.findOne(id);
+	}
+
+	@Override
+	public Page<Country> findAllPageable(Pageable pageable) {
+		return countryRepository.findAll(pageable);
 	}
 
 }
