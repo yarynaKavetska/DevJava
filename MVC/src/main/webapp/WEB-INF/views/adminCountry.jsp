@@ -22,11 +22,11 @@
 		<tr>
 			<th>Country name</th>
 		</tr>
-		<c:forEach items="${countries.content}" var="country">
+		<c:forEach items="${page.content}" var="country">
 			<tr>
 				<td>${country.name}</td>
 				<td>
-					<a href="/admin/country/delete/${country.id}">delete</a>
+					<a href="/admin/country/delete/${country.id}?page=${page.number+1}&size=${page.size}&sort=${param['sort']}"">delete</a>
 				</td>
 				<td>
 					<a href="/admin/country/update/${country.id}">update</a>
@@ -34,11 +34,11 @@
 			</tr>
 		</c:forEach>
 			<tr>
-				<c:if test="${!countries.isFirst()}">
-					<td><a href="?page=${countries.number}&size=${countries.size}&sort=${param['sort']}">Previous</a></td>
+				<c:if test="${!page.isFirst()}">
+					<td><a href="?page=${page.number}&size=${page.size}&sort=${param['sort']}">Previous</a></td>
 				</c:if>
-				<c:if test="${!countries.isLast()}">
-					<td><a href="?page=${countries.number+2}&size=${countries.size}&sort=${param['sort']}">Next</a></td>
+				<c:if test="${!page.isLast()}">
+					<td><a href="?page=${page.number+2}&size=${page.size}&sort=${param['sort']}">Next</a></td>
 				</c:if>
 			</tr>
 			<tr>
@@ -48,8 +48,8 @@
 				<td><a href="?page=1&size=20&sort=${param['sort']}">20</a></td>
 			</tr>
 			<tr>
-				<td><a href="?page=1&size=${countries.size}&sort=name">Name asc</a></td>
-				<td><a href="?page=1&size=${countries.size}&sort=name,desc">Name desc</a></td>
+				<td><a href="?page=1&size=${page.size}&sort=name">Name asc</a></td>
+				<td><a href="?page=1&size=${page.size}&sort=name,desc">Name desc</a></td>
 			</tr>
 	</table>
 </body>

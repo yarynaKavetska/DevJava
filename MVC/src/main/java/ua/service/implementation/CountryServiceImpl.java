@@ -55,7 +55,7 @@ public class CountryServiceImpl implements CountryService{
 	}
 
 	@Override
-	public Page<Country> findAllPageable(Pageable pageable) {
+	public Page<Country> findAll(Pageable pageable) {
 		return countryRepository.findAll(pageable);
 	}
 

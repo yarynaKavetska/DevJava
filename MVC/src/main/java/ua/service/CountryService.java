@@ -16,6 +16,8 @@ public interface CountryService {
 	void delete(String name);
 	
 	List<Country> findAll();
+	
+	Page<Country> findAll(Pageable pageable);
 
 	void delete(int id);
 
@@ -23,5 +25,4 @@ public interface CountryService {
 	
 	Country findOne(int id);
 
-	Page<Country> findAllPageable(Pageable pageable);
 }

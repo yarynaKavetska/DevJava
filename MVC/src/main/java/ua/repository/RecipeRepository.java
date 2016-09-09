@@ -1,5 +1,7 @@
 package ua.repository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -12,5 +14,8 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer>{
 	Recipe findOneCountryInited(@Param("id")int id);
 
 	Recipe findByName(String name);
-
+	@Query(value = "SELECT r FROM Recipe r LEFT JOIN FETCH r.country",
+			countQuery="SELECT count(r.id) FROM Recipe r")
+	Page<Recipe> findAll(Pageable pageable);
+	
 }
