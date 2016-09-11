@@ -14,8 +14,8 @@ public interface RecipeRepository extends JpaRepository<Recipe, Integer>{
 	Recipe findOneCountryInited(@Param("id")int id);
 
 	Recipe findByName(String name);
-	@Query(value = "SELECT r FROM Recipe r LEFT JOIN FETCH r.country",
-			countQuery="SELECT count(r.id) FROM Recipe r")
+	@Query(value = "SELECT r FROM Recipe r LEFT JOIN FETCH r.country c WHERE c.id=:id",
+			countQuery="SELECT count(r.id) FROM Recipe r LEFT JOIN r.country c WHERE c.id=:id")
 	Page<Recipe> findAll(Pageable pageable);
 	
 }

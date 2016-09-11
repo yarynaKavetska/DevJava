@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="/WEB-INF/custom.tld" prefix="custom"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
@@ -34,10 +35,10 @@
 			</tr>
 		</c:forEach>
 			<tr>
-				<c:if test="${!page.isFirst()}">
+				<c:if test="${page.hasPrevious()}">
 					<td><a href="?page=${page.number}&size=${page.size}&sort=${param['sort']}">Previous</a></td>
 				</c:if>
-				<c:if test="${!page.isLast()}">
+				<c:if test="${page.hasNext()}">
 					<td><a href="?page=${page.number+2}&size=${page.size}&sort=${param['sort']}">Next</a></td>
 				</c:if>
 			</tr>
@@ -51,6 +52,9 @@
 				<td><a href="?page=1&size=${page.size}&sort=name">Name asc</a></td>
 				<td><a href="?page=1&size=${page.size}&sort=name,desc">Name desc</a></td>
 			</tr>
+	</table>
+	<table>
+		<custom:pageable page="${page}" cell="<li></li>" container="<ul class='pagination'></ul>"/>
 	</table>
 </body>
 </html>

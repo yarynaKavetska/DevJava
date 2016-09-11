@@ -18,13 +18,13 @@ import ua.entity.Country;
 import ua.service.CountryService;
 
 @Controller
-@SessionAttributes("country")
+@SessionAttributes(value="country")
 public class CountryController {
 	
 	@Autowired
 	private CountryService countryService;
 	
-	@ModelAttribute("country")
+	@ModelAttribute(value="country")
 	public Country getForm(){
 		return new Country();
 	}
@@ -47,7 +47,7 @@ public class CountryController {
 	@RequestMapping(value= "/admin/country", method=RequestMethod.POST)
 	public String save(@ModelAttribute("country") Country country, HttpSession session){
 		countryService.save(country);
-		session.removeAttribute("country");
+		session.setAttribute("country", new Country());
 		return "redirect:/admin/country";
 	}
 	
@@ -56,4 +56,6 @@ public class CountryController {
 		model.addAttribute("countries", countryService.findWithRecipes());
 		return "adminCountryRecipe";
 	}
+	
+	
 }
