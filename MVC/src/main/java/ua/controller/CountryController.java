@@ -1,7 +1,5 @@
 package ua.controller;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -12,13 +10,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import ua.entity.Country;
+import ua.form.CountryFilterForm;
 import ua.service.CountryService;
 
 @Controller
-@SessionAttributes(value="country")
 public class CountryController {
 	
 	@Autowired
@@ -28,10 +25,15 @@ public class CountryController {
 	public Country getForm(){
 		return new Country();
 	}
+	
+	@ModelAttribute(value="filter")
+	public CountryFilterForm getFilter(){
+		return new CountryFilterForm();
+	}
 
 	@RequestMapping("/admin/country")
-	public String show(Model model, @PageableDefault(5) Pageable pageable){
-		model.addAttribute("page", countryService.findAll(pageable));
+	public String show(Model model, @PageableDefault(5) Pageable pageable, @ModelAttribute(value="filter") CountryFilterForm form){
+		model.addAttribute("page", countryService.findAll(pageable, form));
 		return "adminCountry";
 	}
 	
@@ -45,9 +47,8 @@ public class CountryController {
 	}
 	
 	@RequestMapping(value= "/admin/country", method=RequestMethod.POST)
-	public String save(@ModelAttribute("country") Country country, HttpSession session){
+	public String save(@ModelAttribute("country") Country country){
 		countryService.save(country);
-		session.setAttribute("country", new Country());
 		return "redirect:/admin/country";
 	}
 	

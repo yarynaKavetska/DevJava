@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import ua.entity.Country;
+import ua.form.CountryFilterForm;
 
 public interface CountryService {
 
@@ -24,5 +25,7 @@ public interface CountryService {
 	List<Country> findWithRecipes();
 	
 	Country findOne(int id);
+
+	Page<Country> findAll(Pageable pageable, CountryFilterForm form);
 
 }

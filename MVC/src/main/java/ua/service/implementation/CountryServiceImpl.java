@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ua.entity.Country;
+import ua.form.CountryFilterForm;
 import ua.repository.CountryRepository;
 import ua.service.CountryService;
+import ua.service.implementation.specification.CountryFilterAdapter;
 
 @Service
 @Transactional
@@ -57,6 +59,11 @@ public class CountryServiceImpl implements CountryService{
 	@Override
 	public Page<Country> findAll(Pageable pageable) {
 		return countryRepository.findAll(pageable);
+	}
+
+	@Override
+	public Page<Country> findAll(Pageable pageable, CountryFilterForm form) {
+		return countryRepository.findAll(new CountryFilterAdapter(form), pageable);
 	}
 
 }

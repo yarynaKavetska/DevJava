@@ -12,10 +12,17 @@
 	<form:form action="/admin/country" method="post" modelAttribute="country">
 		<table>
 			<tr>
-				<td><form:input path="name"/></td>
+				<td><form:input path="name" placeholder="country name"/></td>
 			</tr>
 			<tr>
-				<td><input type="submit"></td>
+				<td><input type="submit" value="create country"></td>
+			</tr>
+		</table>
+	</form:form>
+	<form:form action="/admin/country" method="get" modelAttribute="filter">
+		<table>
+			<tr>
+				<td><form:input path="search" placeholder="search"/><input type="submit" value="ok"></td>
 			</tr>
 		</table>
 	</form:form>
@@ -53,8 +60,8 @@
 				<td><a href="?page=1&size=${page.size}&sort=name,desc">Name desc</a></td>
 			</tr>
 	</table>
-	<table>
+	<div class="col-md-12 text-center">
 		<custom:pageable page="${page}" cell="<li></li>" container="<ul class='pagination'></ul>"/>
-	</table>
+	</div>
 </body>
 </html>
