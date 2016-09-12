@@ -6,7 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import ua.entity.Country;
-import ua.form.CountryFilterForm;
+import ua.form.filter.CountryFilterForm;
 
 public interface CountryService {
 

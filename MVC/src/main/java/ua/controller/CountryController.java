@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import ua.entity.Country;
-import ua.form.CountryFilterForm;
+import ua.form.filter.CountryFilterForm;
 import ua.service.CountryService;
 import ua.service.implementation.validator.CountryValidator;
 

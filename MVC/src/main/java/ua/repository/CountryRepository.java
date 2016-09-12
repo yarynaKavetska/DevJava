@@ -23,4 +23,6 @@ public interface CountryRepository extends JpaRepository<Country, Integer>, JpaS
 	@Modifying
 	@Query("DELETE FROM Country c WHERE c.name=:name")
 	void deleteByName(@Param("name") String name);
+	
+	
 }

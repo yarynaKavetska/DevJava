@@ -9,7 +9,7 @@ import javax.persistence.criteria.Root;
 import org.springframework.data.jpa.domain.Specification;
 
 import ua.entity.Country;
-import ua.form.CountryFilterForm;
+import ua.form.filter.CountryFilterForm;
 
 public class CountryFilterAdapter implements Specification<Country>{
 
