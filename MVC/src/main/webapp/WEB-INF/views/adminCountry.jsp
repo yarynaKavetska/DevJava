@@ -13,7 +13,9 @@
 		<form:hidden path="id"/>
 		<c:forEach items="${param}" var="parameter">
 			<c:forEach items="${parameter.value}" var="value">
-				<input type="hidden" name="${parameter.key}" value="${value}">
+				<c:if test="${!((parameter.key eq 'name') or (parameter.key eq 'id'))}">
+					<input type="hidden" name="${parameter.key}" value="${value}">
+				</c:if>
 			</c:forEach>
 		</c:forEach>
 		<table>
