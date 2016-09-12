@@ -1,5 +1,7 @@
 package ua.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -7,15 +9,18 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import ua.entity.Country;
 import ua.form.CountryFilterForm;
 import ua.service.CountryService;
+import ua.service.implementation.validator.CountryValidator;
 
 @Controller
 public class CountryController {
@@ -31,6 +36,11 @@ public class CountryController {
 	@ModelAttribute("filter")
 	public CountryFilterForm getFilter(){
 		return new CountryFilterForm();
+	}
+	
+	@InitBinder("country")
+	protected void initBinder(WebDataBinder binder){
+	   binder.setValidator(new CountryValidator(countryService));
 	}
 
 	@RequestMapping("/admin/country")
@@ -60,9 +70,15 @@ public class CountryController {
 	}
 	
 	@RequestMapping(value= "/admin/country", method=RequestMethod.POST)
-	public String save(@ModelAttribute("country") Country country,
+	public String save(@ModelAttribute("country") @Valid Country country,
+			BindingResult br,
 			@PageableDefault(5) Pageable pageable,
-			@ModelAttribute(value="filter") CountryFilterForm form){
+			@ModelAttribute(value="filter") CountryFilterForm form,
+			Model model){
+		if(br.hasErrors()){
+			model.addAttribute("page", countryService.findAll(pageable, form));
+			return "adminCountry";
+		}
 		countryService.save(country);
 		return "redirect:/admin/country"+getParams(pageable, form);
 	}

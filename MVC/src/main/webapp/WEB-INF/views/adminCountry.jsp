@@ -11,12 +11,15 @@
 <body>
 	<form:form action="/admin/country" method="post" modelAttribute="country">
 		<form:hidden path="id"/>
-		<c:forEach items="${param}" var="patameter">
-			<c:forEach items="${patameter.value}" var="value">
-				<input type="hidden" name="${patameter.key}" value="${value}">
+		<c:forEach items="${param}" var="parameter">
+			<c:forEach items="${parameter.value}" var="value">
+				<input type="hidden" name="${parameter.key}" value="${value}">
 			</c:forEach>
 		</c:forEach>
 		<table>
+			<tr>
+				<td><form:errors path="name"/></td>
+			</tr>
 			<tr>
 				<td><form:input path="name" placeholder="country name"/></td>
 			</tr>
@@ -26,10 +29,10 @@
 		</table>
 	</form:form>
 	<form:form action="/admin/country" method="get" modelAttribute="filter">
-		<c:forEach items="${param}" var="patameter">
-			<c:forEach items="${patameter.value}" var="value">
-				<c:if test="${patameter.key ne 'search'}">
-					<input type="hidden" name="${patameter.key}" value="${value}">
+		<c:forEach items="${param}" var="parameter">
+			<c:forEach items="${parameter.value}" var="value">
+				<c:if test="${parameter.key ne 'search'}">
+					<input type="hidden" name="${parameter.key}" value="${value}">
 				</c:if>
 			</c:forEach>
 		</c:forEach>

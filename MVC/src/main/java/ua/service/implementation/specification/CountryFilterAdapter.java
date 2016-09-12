@@ -2,6 +2,7 @@ package ua.service.implementation.specification;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
@@ -26,7 +27,8 @@ public class CountryFilterAdapter implements Specification<Country>{
 //			root.fetch("measuringSystem");
 //			query.distinct(true);
 		}
-		return cb.like(cb.upper(root.get("name")), search.toUpperCase()+"%");
+		Expression<String> exp = root.get("name");
+		return cb.like(cb.upper(exp), search.toUpperCase()+"%");
 	}
 	
 	
