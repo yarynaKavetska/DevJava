@@ -2,6 +2,8 @@ package ua.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,35 +23,48 @@ public class CountryController {
 	@Autowired
 	private CountryService countryService;
 	
-	@ModelAttribute(value="country")
+	@ModelAttribute("country")
 	public Country getForm(){
 		return new Country();
 	}
 	
-	@ModelAttribute(value="filter")
+	@ModelAttribute("filter")
 	public CountryFilterForm getFilter(){
 		return new CountryFilterForm();
 	}
 
 	@RequestMapping("/admin/country")
-	public String show(Model model, @PageableDefault(5) Pageable pageable, @ModelAttribute(value="filter") CountryFilterForm form){
+	public String show(Model model,
+			@PageableDefault(5) Pageable pageable,
+			@ModelAttribute(value="filter") CountryFilterForm form){
 		model.addAttribute("page", countryService.findAll(pageable, form));
 		return "adminCountry";
 	}
 	
 	@RequestMapping("/admin/country/delete/{id}")
-	public String delete(@PathVariable int id, 
-			@RequestParam(value="page", required=false, defaultValue="1") int page, 
-			@RequestParam(value="size", required=false, defaultValue="5") int size,
-			@RequestParam(value="sort", required=false, defaultValue="") String sort){
+	public String delete(@PathVariable int id,
+			@PageableDefault(5) Pageable pageable,
+			@ModelAttribute(value="filter") CountryFilterForm form){
 		countryService.delete(id);
-		return "redirect:/admin/country?page="+page+"&size="+size+"&sort="+sort;
+		return "redirect:/admin/country"+getParams(pageable, form);
+	}
+	
+	@RequestMapping("/admin/country/update/{id}")
+	public String update(Model model,
+			@PathVariable int id,
+			@PageableDefault(5) Pageable pageable,
+			@ModelAttribute(value="filter") CountryFilterForm form){
+		model.addAttribute("country", countryService.findOne(id));
+		model.addAttribute("page", countryService.findAll(pageable, form));
+		return "adminCountry";
 	}
 	
 	@RequestMapping(value= "/admin/country", method=RequestMethod.POST)
-	public String save(@ModelAttribute("country") Country country){
+	public String save(@ModelAttribute("country") Country country,
+			@PageableDefault(5) Pageable pageable,
+			@ModelAttribute(value="filter") CountryFilterForm form){
 		countryService.save(country);
-		return "redirect:/admin/country";
+		return "redirect:/admin/country"+getParams(pageable, form);
 	}
 	
 	@RequestMapping("/admin/country/recipe")
@@ -58,5 +73,23 @@ public class CountryController {
 		return "adminCountryRecipe";
 	}
 	
-	
+	private String getParams(Pageable pageable, CountryFilterForm form){
+		StringBuilder buffer = new StringBuilder();
+		buffer.append("?page=");
+		buffer.append(String.valueOf(pageable.getPageNumber()+1));
+		buffer.append("&size=");
+		buffer.append(String.valueOf(pageable.getPageSize()));
+		if(pageable.getSort()!=null){
+			buffer.append("&sort=");
+			Sort sort = pageable.getSort();
+			sort.forEach((order)->{
+				buffer.append(order.getProperty());
+				if(order.getDirection()!=Direction.ASC)
+				buffer.append(",desc");
+			});
+		}
+		buffer.append("&search=");
+		buffer.append(form.getSearch());
+		return buffer.toString();
+	}
 }

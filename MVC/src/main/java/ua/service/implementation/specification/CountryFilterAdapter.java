@@ -15,13 +15,17 @@ public class CountryFilterAdapter implements Specification<Country>{
 	private String search = "";
 
 	public CountryFilterAdapter(CountryFilterForm form) {
-		if(form.getSearch()!=null)
 		search = form.getSearch();
 	}
 
 	@Override
 	public Predicate toPredicate(Root<Country> root, CriteriaQuery<?> query,
 			CriteriaBuilder cb) {
+		if (query.getResultType() != Long.class && query.getResultType() != long.class) {
+//			root.fetch("ingredient");
+//			root.fetch("measuringSystem");
+//			query.distinct(true);
+		}
 		return cb.like(cb.upper(root.get("name")), search.toUpperCase()+"%");
 	}
 	

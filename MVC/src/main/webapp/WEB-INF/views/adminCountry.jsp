@@ -10,6 +10,12 @@
 </head>
 <body>
 	<form:form action="/admin/country" method="post" modelAttribute="country">
+		<form:hidden path="id"/>
+		<c:forEach items="${param}" var="patameter">
+			<c:forEach items="${patameter.value}" var="value">
+				<input type="hidden" name="${patameter.key}" value="${value}">
+			</c:forEach>
+		</c:forEach>
 		<table>
 			<tr>
 				<td><form:input path="name" placeholder="country name"/></td>
@@ -20,6 +26,13 @@
 		</table>
 	</form:form>
 	<form:form action="/admin/country" method="get" modelAttribute="filter">
+		<c:forEach items="${param}" var="patameter">
+			<c:forEach items="${patameter.value}" var="value">
+				<c:if test="${patameter.key ne 'search'}">
+					<input type="hidden" name="${patameter.key}" value="${value}">
+				</c:if>
+			</c:forEach>
+		</c:forEach>
 		<table>
 			<tr>
 				<td><form:input path="search" placeholder="search"/><input type="submit" value="ok"></td>
@@ -34,30 +47,22 @@
 			<tr>
 				<td>${country.name}</td>
 				<td>
-					<a href="/admin/country/delete/${country.id}?page=${page.number+1}&size=${page.size}&sort=${param['sort']}"">delete</a>
+					<a href="/admin/country/delete/${country.id}?page=${page.number+1}&size=${page.size}&sort=${param['sort']}&search=${param['search']}">delete</a>
 				</td>
 				<td>
-					<a href="/admin/country/update/${country.id}">update</a>
+					<a href="/admin/country/update/${country.id}?page=${page.number+1}&size=${page.size}&sort=${param['sort']}&search=${param['search']}">update</a>
 				</td>
 			</tr>
 		</c:forEach>
 			<tr>
-				<c:if test="${page.hasPrevious()}">
-					<td><a href="?page=${page.number}&size=${page.size}&sort=${param['sort']}">Previous</a></td>
-				</c:if>
-				<c:if test="${page.hasNext()}">
-					<td><a href="?page=${page.number+2}&size=${page.size}&sort=${param['sort']}">Next</a></td>
-				</c:if>
+				<td><a href="?page=1&size=1&sort=${param['sort']}&search=${param['search']}">1</a></td>
+				<td><a href="?page=1&size=5&sort=${param['sort']}&search=${param['search']}">5</a></td>
+				<td><a href="?page=1&size=10&sort=${param['sort']}&search=${param['search']}">10</a></td>
+				<td><a href="?page=1&size=20&sort=${param['sort']}&search=${param['search']}">20</a></td>
 			</tr>
 			<tr>
-				<td><a href="?page=1&size=1&sort=${param['sort']}">1</a></td>
-				<td><a href="?page=1&size=5&sort=${param['sort']}">5</a></td>
-				<td><a href="?page=1&size=10&sort=${param['sort']}">10</a></td>
-				<td><a href="?page=1&size=20&sort=${param['sort']}">20</a></td>
-			</tr>
-			<tr>
-				<td><a href="?page=1&size=${page.size}&sort=name">Name asc</a></td>
-				<td><a href="?page=1&size=${page.size}&sort=name,desc">Name desc</a></td>
+				<td><a href="?page=1&size=${page.size}&sort=name&search=${param['search']}">Name asc</a></td>
+				<td><a href="?page=1&size=${page.size}&sort=name,desc&search=${param['search']}">Name desc</a></td>
 			</tr>
 	</table>
 	<div class="col-md-12 text-center">

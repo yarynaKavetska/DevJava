@@ -65,5 +65,4 @@ public class CountryServiceImpl implements CountryService{
 	public Page<Country> findAll(Pageable pageable, CountryFilterForm form) {
 		return countryRepository.findAll(new CountryFilterAdapter(form), pageable);
 	}
-
 }
