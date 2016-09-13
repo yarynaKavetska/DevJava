@@ -77,8 +77,8 @@
 					<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Sort <span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu">
-						<li><a href='<custom:sortUrl paramValue="name"/>'>Name asc</a></li>
-						<li><a href='<custom:sortUrl paramValue="name,desc"/>'>Name desc</a></li>
+						<custom:sort innerHtml="Name asc" paramValue="name"/>
+						<custom:sort innerHtml="Name desc" paramValue="name,desc"/>
 					</ul>
 				</div>
 			</div>

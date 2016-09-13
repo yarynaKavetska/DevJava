@@ -2,6 +2,7 @@ package ua.service.implementation.tag;
 
 import java.io.IOException;
 import java.io.StringWriter;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -11,27 +12,34 @@ import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
-public class SortUrlTag extends SimpleTagSupport {
+public class SortTag extends SimpleTagSupport {
 
 	private final StringWriter sw = new StringWriter();
 	private final static String amper = "&";
 	private final static String quest = "?";
 	private final static String equal = "=";
+	private final static String sort = "sort";
 	private String paramValue = "";
+	private String innerHtml = "";
 	
 	@Override
 	public void doTag() throws JspException, IOException {
 		JspWriter out = getJspContext().getOut();
 		PageContext pageContext = (PageContext) getJspContext();
 		HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
+		Map<String, String[]> map = request.getParameterMap();
+		if(isParamValuePresent(map)){
+			sw.append("<li class='active'><a href='");
+		}else{
+			sw.append("<li><a href='");
+		}
 		sw.append(quest);
-		sw.append("sort");
+		sw.append(sort);
 		sw.append(equal);
 		sw.append(paramValue);
-		Map<String, String[]> map = request.getParameterMap();
 		for(Entry<String, String[]> entry : map.entrySet()){
 			for(String value : entry.getValue()){
-				if(!entry.getKey().equals("sort")){
+				if(!entry.getKey().equals(sort)){
 					sw.append(amper);
 					sw.append(entry.getKey());
 					sw.append(equal);
@@ -39,10 +47,23 @@ public class SortUrlTag extends SimpleTagSupport {
 				}
 			}
 		}
+		sw.append("'>");
+		sw.append(innerHtml);
+		sw.append("</a></li>");
 		out.println(sw.toString());
+	}
+	
+	public boolean isParamValuePresent(Map<String, String[]> map){
+		return map.entrySet().stream().map(Map.Entry::getValue)
+		.flatMap((array)->Arrays.stream(array))
+		.anyMatch((str)->str.equals(paramValue));
 	}
 	
 	public void setParamValue(String paramValue){
 		this.paramValue = paramValue;
+	}
+
+	public void setInnerHtml(String innerHtml) {
+		this.innerHtml = innerHtml;
 	}
 }

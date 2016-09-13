@@ -51,7 +51,7 @@
 			</c:forEach>
 			<div class="form-group">
 				<label for="name"><form:errors path="name" /></label>
-				<input name="name" id="name" placeholder="Ingredient name" class="form-control" >
+				<form:input path="name" id="name" placeholder="Ingredient name" class="form-control" />
 				<button type="submit" class="btn btn-primary">Create ingredient</button>
 			</div>
 		</form:form>
@@ -74,11 +74,11 @@
 	<div class="col-md-2">
 		<div class="col-md-6">
 				<div class="dropdown">
-					<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Sort<span class="caret"></span>
+					<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Sort <span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu">
-						<li><a href='<custom:sortUrl paramValue="name"/>'>Name asc</a></li>
-						<li><a href='<custom:sortUrl paramValue="name,desc"/>'>Name desc</a></li>
+						<custom:sort innerHtml="Name asc" paramValue="name"/>
+						<custom:sort innerHtml="Name desc" paramValue="name,desc"/>
 					</ul>
 				</div>
 			</div>

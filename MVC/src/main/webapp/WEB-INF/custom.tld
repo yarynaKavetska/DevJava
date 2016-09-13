@@ -26,11 +26,17 @@
    	 </attribute>
   </tag>
   <tag>
-    <name>sortUrl</name>
-    <tag-class>ua.service.implementation.tag.SortUrlTag</tag-class>
+    <name>sort</name>
+    <tag-class>ua.service.implementation.tag.SortTag</tag-class>
     <body-content>empty</body-content>
      <attribute>
       <name>paramValue</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+      <type>java.lang.String</type>
+     </attribute>
+     <attribute>
+      <name>innerHtml</name>
       <required>true</required>
       <rtexprvalue>true</rtexprvalue>
       <type>java.lang.String</type>
