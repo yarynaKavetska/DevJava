@@ -25,13 +25,7 @@
 	<div class="row-fluid">
 		<div class="col-md-3">
 		<form:form action="/admin/country" class="form-inline" method="get" modelAttribute="filter">
-				<c:forEach items="${param}" var="parameter">
-					<c:forEach items="${parameter.value}" var="value">
-						<c:if test="${parameter.key ne 'search'}">
-							<input type="hidden" name="${parameter.key}" value="${value}">
-						</c:if>
-					</c:forEach>
-				</c:forEach>
+				<custom:hiddenInputs excludeParams="search"/>
 				<div class="form-group">
 					<form:input path="search" placeholder="search" class="form-control" />
 					<button type="submit" class="btn btn-primary">Ok</button>
@@ -42,13 +36,7 @@
 			<form:form action="/admin/country" method="post" class="form-inline" 
 				modelAttribute="country">
 				<form:hidden path="id" />
-				<c:forEach items="${param}" var="parameter">
-					<c:forEach items="${parameter.value}" var="value">
-						<c:if test="${parameter.key ne 'name' and parameter.key ne 'id'}">
-							<input type="hidden" name="${parameter.key}" value="${value}">
-						</c:if>
-					</c:forEach>
-				</c:forEach>
+				<custom:hiddenInputs excludeParams="name, id"/>
 				<div class="form-group">
 					<label for="name"><form:errors path="name" /></label>
 					<form:input id="name" path="name" placeholder="country name" class="form-control" />
@@ -61,10 +49,10 @@
 			<c:forEach items="${page.content}" var="country">
 				<div class="col-md-4">${country.name}</div>
 				<div class="col-md-4">
-					<a href="/admin/country/delete/${country.id}?page=${page.number+1}&size=${page.size}&sort=${param['sort']}&search=${param['search']}">delete</a>
+					<a href="/admin/country/delete/${country.id}<custom:allParams/>">delete</a>
 				</div>
 				<div class="col-md-4">
-					<a href="/admin/country/update/${country.id}?page=${page.number+1}&size=${page.size}&sort=${param['sort']}&search=${param['search']}">update</a>
+					<a href="/admin/country/update/${country.id}<custom:allParams/>">update</a>
 				</div>
 			</c:forEach>
 			<div class="col-md-12 text-center">
@@ -83,7 +71,7 @@
 				</div>
 			</div>
 			<div class="col-md-6">
-				<custom:size posibleSizes="1,2,5,10" size="${page.size}" />
+				<custom:size posibleSizes="1,2,5,10" size="${page.size}"/>
 			</div>
 		</div>
 	</div>

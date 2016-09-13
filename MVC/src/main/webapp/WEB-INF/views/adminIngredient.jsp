@@ -26,13 +26,7 @@
 <div class="row-fluid">
 	<div class="col-md-3">
 		<form:form action="/admin/ingredient" class="form-inline" method="get" modelAttribute="filter">
-				<c:forEach items="${param}" var="parameter">
-					<c:forEach items="${parameter.value}" var="value">
-						<c:if test="${parameter.key ne 'search'}">
-							<input type="hidden" name="${parameter.key}" value="${value}">
-						</c:if>
-					</c:forEach>
-				</c:forEach>
+				<custom:hiddenInputs excludeParams="search"/>
 				<div class="form-group">
 					<form:input path="search" placeholder="search" class="form-control" />
 				</div>
@@ -42,13 +36,7 @@
 	<div class="col-md-7">
 		<form:form action="/admin/ingredient" method="post" modelAttribute="ingredient" class="form-inline">
 			<form:hidden path="id"/>
-			<c:forEach items="${param}" var="parameter">
-				<c:forEach items="${parameter.value}" var="value">
-					<c:if test="${parameter.key ne 'name' and parameter.key ne 'id'}">
-						<input type="hidden" name="${parameter.key}" value="${value}">
-					</c:if>
-				</c:forEach>
-			</c:forEach>
+			<custom:hiddenInputs excludeParams="name, id"/>
 			<div class="form-group">
 				<label for="name"><form:errors path="name" /></label>
 				<form:input path="name" id="name" placeholder="Ingredient name" class="form-control" />
@@ -61,10 +49,10 @@
 			<c:forEach items="${page.content}" var="ingredient">
 				<div class="col-md-4">${ingredient.name}</div>
 				<div class="col-md-4">
-					<a href="/admin/ingredient/delete/${ingredient.id}?page=${page.number+1}&size=${page.size}&sort=${param['sort']}&search=${param['search']}">delete</a>
+					<a href="/admin/ingredient/delete/${ingredient.id}<custom:allParams/>">delete</a>
 				</div>
 				<div class="col-md-4">
-					<a href="/admin/ingredient/update/${ingredient.id}?page=${page.number+1}&size=${page.size}&sort=${param['sort']}&search=${param['search']}">update</a>
+					<a href="/admin/ingredient/update/${ingredient.id}<custom:allParams/>">update</a>
 				</div>
 			</c:forEach>
 			<div class="col-md-12 text-center">
