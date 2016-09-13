@@ -2,12 +2,25 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-</head>
-<body>
+	<div class="row">
+			<div class="col-md-12">
+				<nav class="navbar navbar-default">
+					<div class="container-fluid">
+						<div class="collapse navbar-collapse" id="">
+							<ul class="nav navbar-nav">
+								<li><a href="/admin/country">Country</a></li>
+								<li><a href="/admin/ingredient">Ingredient</a></li>
+								<li><a href="/admin/measuringSystem">Measuring System</a></li>
+								<li class="active"><a href="/admin/recipe">Recipe</a><span
+										class="sr-only">(current)</span></li>
+								<li><a href="/admin/ingredientAmount">Amount and ingredient</a></li>
+								<li><a href="/admin/country/recipe">Recipe country</a></li>
+							</ul>
+						</div>
+					</div>
+				</nav>
+			</div>
+		</div>
 	<form:form action="/admin/recipe" method="post" modelAttribute="form">
 		<form:errors path="*"/>
 		<form:hidden path="id" />
@@ -56,5 +69,3 @@
 			</tr>
 		</c:forEach>
 	</table>
-</body>
-</html>

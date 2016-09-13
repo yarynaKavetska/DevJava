@@ -7,12 +7,23 @@
 <title>Insert title here</title>
 </head>
 <body>
-<p>Admin panel</p>
-<a href="/admin/country">Country</a>
-<a href="/admin/ingredient">Ingredient</a>
-<a href="/admin/measuringSystem">Measuring system</a>
-<a href="/admin/ingredientAmount">Ingredient and amount</a>
-<a href="/admin/recipe">Recipe</a>
-<a href="/admin/country/recipe">Recipe and country</a>
+<div class="row">
+			<div class="col-md-12">
+				<nav class="navbar navbar-default">
+					<div class="container-fluid">
+						<div class="collapse navbar-collapse" id="">
+							<ul class="nav navbar-nav">
+								<li><a href="/admin/country">Country</a></li>
+								<li><a href="/admin/ingredient">Ingredient</a></li>
+								<li><a href="/admin/measuringSystem">Measuring System</a></li>
+								<li><a href="/admin/recipe">Recipe</a></li>
+								<li><a href="/admin/ingredientAmount">Amount and ingredient</a></li>
+								<li><a href="/admin/country/recipe">Recipe country</a></li>
+							</ul>
+						</div>
+					</div>
+				</nav>
+			</div>
+		</div>
 </body>
 </html>

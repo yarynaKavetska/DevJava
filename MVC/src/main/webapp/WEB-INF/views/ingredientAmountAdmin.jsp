@@ -1,12 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-</head>
-<body>
+	<div class="row">
+			<div class="col-md-12">
+				<nav class="navbar navbar-default">
+					<div class="container-fluid">
+						<div class="collapse navbar-collapse" id="">
+							<ul class="nav navbar-nav">
+								<li><a href="/admin/country">Country</a></li>
+								<li><a href="/admin/ingredient">Ingredient</a></li>
+								<li><a href="/admin/measuringSystem">Measuring System</a></li>
+								<li><a href="/admin/recipe">Recipe</a></li>
+								<li class="active"><a href="/admin/ingredientAmount">Amount and ingredient</a><span
+										class="sr-only">(current)</span></li>
+								<li><a href="/admin/country/recipe">Recipe country</a></li>
+							</ul>
+						</div>
+					</div>
+				</nav>
+			</div>
+		</div>
 	<form action="/admin/ingredientAmount" method="post">
 		<table>
 			<tr>
@@ -51,5 +64,3 @@
 			</tr>
 		</c:forEach>
 	</table>
-</body>
-</html>
