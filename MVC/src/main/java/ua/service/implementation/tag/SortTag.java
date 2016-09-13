@@ -15,10 +15,10 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 public class SortTag extends SimpleTagSupport {
 
 	private final StringWriter sw = new StringWriter();
-	private final static String amper = "&";
-	private final static String quest = "?";
-	private final static String equal = "=";
-	private final static String sort = "sort";
+	private final static String AMPER = "&";
+	private final static String QUEST = "?";
+	private final static String EQUAL = "=";
+	private final static String SORT = "sort";
 	private String paramValue = "";
 	private String innerHtml = "";
 	
@@ -33,16 +33,16 @@ public class SortTag extends SimpleTagSupport {
 		}else{
 			sw.append("<li><a href='");
 		}
-		sw.append(quest);
-		sw.append(sort);
-		sw.append(equal);
+		sw.append(QUEST);
+		sw.append(SORT);
+		sw.append(EQUAL);
 		sw.append(paramValue);
 		for(Entry<String, String[]> entry : map.entrySet()){
 			for(String value : entry.getValue()){
-				if(!entry.getKey().equals(sort)){
-					sw.append(amper);
+				if(!entry.getKey().equals(SORT)){
+					sw.append(AMPER);
 					sw.append(entry.getKey());
-					sw.append(equal);
+					sw.append(EQUAL);
 					sw.append(value);
 				}
 			}
@@ -54,7 +54,9 @@ public class SortTag extends SimpleTagSupport {
 	}
 	
 	public boolean isParamValuePresent(Map<String, String[]> map){
-		return map.entrySet().stream().map(Map.Entry::getValue)
+		return map.entrySet().stream()
+		.filter(entry->entry.getKey().equals(SORT))
+		.map(Map.Entry::getValue)
 		.flatMap((array)->Arrays.stream(array))
 		.anyMatch((str)->str.equals(paramValue));
 	}

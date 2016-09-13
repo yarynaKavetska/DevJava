@@ -15,9 +15,9 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 public class SizeTag extends SimpleTagSupport {
 
 	private final StringWriter sw = new StringWriter();
-	private final static String amper = "&";
-	private final static String quest = "?";
-	private final static String equal = "=";
+	private final static String AMPER = "&";
+	private final static String QUEST = "?";
+	private final static String EQUAL = "=";
 	private String title = "Size";
 	private int size;
 	private int[] posibleSizes;
@@ -36,7 +36,7 @@ public class SizeTag extends SimpleTagSupport {
 				sw.append("<li>");
 			}
 			sw.append("<a href='");
-			sw.append(quest);
+			sw.append(QUEST);
 			sw.append("size=");
 			sw.append(String.valueOf(size));
 			addAllParameters();
@@ -56,9 +56,9 @@ public class SizeTag extends SimpleTagSupport {
 		for(Entry<String, String[]> entry : map.entrySet()){
 			for(String value : entry.getValue()){
 				if(!entry.getKey().equals("size")){
-					sw.append(amper);
+					sw.append(AMPER);
 					sw.append(entry.getKey());
-					sw.append(equal);
+					sw.append(EQUAL);
 					sw.append(value);
 				}
 			}
@@ -77,5 +77,9 @@ public class SizeTag extends SimpleTagSupport {
 			this.posibleSizes[i] = Integer.valueOf(tokenizer.nextToken());
 			i++;
 		}
+	}
+	
+	public void setTitle(String title){
+		this.title = title;
 	}
 }

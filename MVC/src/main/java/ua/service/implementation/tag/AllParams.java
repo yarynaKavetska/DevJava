@@ -14,9 +14,9 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 public class AllParams extends SimpleTagSupport{
 
 	private final StringWriter sw = new StringWriter();
-	private final static String amper = "&";
-	private final static String quest = "?";
-	private final static String equal = "=";
+	private final static String AMPER = "&";
+	private final static String QUEST = "?";
+	private final static String EQUAL = "=";
 	
 	public void doTag() throws JspException, IOException {
 		JspWriter out = getJspContext().getOut();
@@ -27,13 +27,13 @@ public class AllParams extends SimpleTagSupport{
 		for(Entry<String, String[]> entry : map.entrySet()){
 			for(String value : entry.getValue()){
 				if(isFirst){
-					sw.append(quest);
+					sw.append(QUEST);
 					isFirst = false;
 				}else{
-					sw.append(amper);
+					sw.append(AMPER);
 				}
 				sw.append(entry.getKey());
-				sw.append(equal);
+				sw.append(EQUAL);
 				sw.append(value);
 			}
 		}
