@@ -71,7 +71,7 @@
 				</div>
 			</div>
 			<div class="col-md-6">
-				<custom:size posibleSizes="1,2,5,10" size="${page.size}"/>
+				<custom:size posibleSizes="1,2,5,10" size="${page.size}" title="Page size"/>
 			</div>
 		</div>
 	</div>
