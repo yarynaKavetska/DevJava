@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Expression;
+import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
@@ -65,8 +66,8 @@ public class IngredientAmountFilterAdapter implements Specification<AmountAndIng
 	@Override
 	public Predicate toPredicate(Root<AmountAndIngredient> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 		if (query.getResultType() != Long.class && query.getResultType() != long.class) {
-			root.fetch("ingredient");
-			root.fetch("measuringSystem");
+			root.fetch("ingredient", JoinType.LEFT);
+			root.fetch("measuringSystem", JoinType.LEFT);
 		}
 		findByAmount();
 		findByIngredient();
