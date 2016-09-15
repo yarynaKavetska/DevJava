@@ -34,6 +34,7 @@ public class IngredientAmountFilterAdapter implements Specification<AmountAndIng
 	
 	private void findByAmount(){
 		if(form.getMinInt()!=0&&form.getMaxInt()!=0){
+//			filters.add((root, query, cb)->cb.between(root.get("amount"), form.getMinInt(), form.getMaxInt()));
 			filters.add((root, query, cb)->{
 				Expression<Integer> exp = root.get("amount");
 				return cb.between(exp, form.getMinInt(), form.getMaxInt());

@@ -4,13 +4,16 @@
 <%@ taglib uri="/WEB-INF/custom.tld" prefix="custom"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <style>
-	form#filter span{
+	#filter span{
 		display: inline-block;
 		width: 100%;
 	}
-	form#filter label{
+	#filter label{
 		vertical-align: super;
-		padding-left: 2%;		
+		padding-left: 2%;
+	}
+	#filter input[type='text']{
+		width: 49%;
 	}
 </style>
 	
@@ -34,7 +37,7 @@
 			</div>
 		</div>
 <div class="row-fluid">
-	<div class="col-md-3">
+	<div class="col-md-3 col-xs-12">
 			<form:form action="/admin/ingredientAmount" class="form-inline" method="get" modelAttribute="filter">
 				<custom:hiddenInputs excludeParams="min, max, msIds, ingredientIds, _ingredientIds, _msIds"/>
 				<div class="form-group">
@@ -58,7 +61,7 @@
 				</div>
 			</form:form>
 		</div>
-	<div class="col-md-7">
+	<div class="col-md-7 col-xs-12">
 	<form:form class="form-inline" action="/admin/ingredientAmount" method="post" modelAttribute="form">
 		<form:hidden path="id" />
 		<custom:hiddenInputs excludeParams="amount, system, ingredient, id"/>
@@ -92,7 +95,7 @@
 			<custom:pageable page="${page}" cell="<li></li>" container="<ul class='pagination'></ul>" />
 		</div>
 	</div>
-	<div class="col-md-2">
+	<div class="col-md-2 col-xs-12">
 			<div class="col-md-6">
 				<div class="dropdown">
 					<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Sort <span class="caret"></span>

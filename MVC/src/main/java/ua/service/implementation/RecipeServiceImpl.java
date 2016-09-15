@@ -6,10 +6,13 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import ua.entity.Recipe;
 import ua.form.RecipeForm;
+import ua.form.filter.RecipeFilterForm;
 import ua.repository.CountryRepository;
 import ua.repository.RecipeRepository;
 import ua.service.RecipeService;
@@ -57,5 +60,10 @@ public class RecipeServiceImpl implements RecipeService{
 	@Override
 	public Recipe findByName(String name) {
 		return recipeRepository.findByName(name);
+	}
+
+	@Override
+	public Page<Recipe> findAll(RecipeFilterForm form, Pageable pageable) {
+		return recipeRepository.findAll(pageable);
 	}
 }
