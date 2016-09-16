@@ -31,7 +31,7 @@ $(function() {
 				<custom:hiddenInputs excludeParams="search"/>
 				<div class="form-group">
 <%-- 					<form:input path="search" placeholder="search" class="form-control" /> --%>
-					<button type="submit" class="btn btn-primary">Ok</button>
+					<button type="submit" class="btn btn-danger">Ok</button>
 				</div>
 			</form:form>
 		</div>

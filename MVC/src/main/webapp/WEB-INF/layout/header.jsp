@@ -4,7 +4,7 @@
 	<div class="container">
 		<div class="row-fluid">
 			<a href="/">
-				<img class="img-thumbnail" width="100" src="/resources/image/maxresdefault.jpg?version=1" />
+				<img class="img-thumbnail" width="80" src="/resources/image/maxresdefault.jpg?version=1" />
 			</a>
 		</div>
 	</div>
