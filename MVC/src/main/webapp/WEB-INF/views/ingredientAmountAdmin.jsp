@@ -39,7 +39,7 @@ $(function() {
 					<h4>Measuring system</h4>
 				</div>
 				<div class="form-group">
-					<form:checkboxes items="${measuringSystems}" path="msIds" itemLabel="name" itemValue="id"/>
+					<form:checkboxes items="${measuringSystems}" path="msIds" itemLabel="name" itemValue="id" />
 				</div>
 				<div class="form-group">
 					<h4>Ingredients</h4>

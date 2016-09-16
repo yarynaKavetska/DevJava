@@ -22,7 +22,7 @@ public class FileWriterImpl implements FileWriter{
 			if(!pathToFolder.exists()){
 				pathToFolder.mkdirs();
 			}
-			File pathToFile = new File(pathToFolder,String.valueOf(id)+extension);
+			File pathToFile = new File(pathToFolder, String.valueOf(id)+extension);
 				try {
 					file.transferTo(pathToFile);
 					return extension;

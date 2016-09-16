@@ -3,6 +3,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="/WEB-INF/custom.tld" prefix="custom"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<script>
+$(function() {
+	$('select[name=country]').chosen();
+});
+</script>
 	<div class="row-fluid">
 				<nav class="navbar navbar-default">
 					<div class="container-fluid">
