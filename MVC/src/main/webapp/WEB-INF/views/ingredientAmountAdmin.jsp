@@ -3,22 +3,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="/WEB-INF/custom.tld" prefix="custom"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<style>
-	#filter span{
-		display: inline-block;
-		width: 100%;
-	}
-	#filter label{
-		vertical-align: super;
-		padding-left: 2%;
-	}
-	#filter input[type='text']{
-		width: 49%;
-	}
-</style>
-	
-	<div class="row">
-			<div class="col-md-12">
+<link rel="stylesheet" href="/resources/css/ingredientAmount.css">
+<script>
+$(function() {
+	$('select[name=system]').chosen();
+	$('select[name=ingredient]').chosen();
+});
+</script>
+	<div class="row-fluid">
 				<nav class="navbar navbar-default">
 					<div class="container-fluid">
 						<div class="collapse navbar-collapse" id="">
@@ -34,7 +26,6 @@
 						</div>
 					</div>
 				</nav>
-			</div>
 		</div>
 <div class="row-fluid">
 	<div class="col-md-3 col-xs-12">

@@ -7,8 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div class="row">
-			<div class="col-md-12">
+<div class="row-fluid">
 				<nav class="navbar navbar-default">
 					<div class="container-fluid">
 						<div class="collapse navbar-collapse" id="">
@@ -23,7 +22,6 @@
 						</div>
 					</div>
 				</nav>
-			</div>
 		</div>
 </body>
 </html>

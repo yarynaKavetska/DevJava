@@ -15,6 +15,8 @@ import ua.form.RecipeForm;
 import ua.form.filter.RecipeFilterForm;
 import ua.repository.CountryRepository;
 import ua.repository.RecipeRepository;
+import ua.service.FileWriter;
+import ua.service.FileWriter.Folder;
 import ua.service.RecipeService;
 
 @Service
@@ -25,6 +27,9 @@ public class RecipeServiceImpl implements RecipeService{
 	
 	@Autowired
 	private CountryRepository countryRepository;
+	
+	@Autowired
+	private FileWriter fileWriter;
 	
 	@Override
 	public List<Recipe> findAll() {
@@ -43,7 +48,15 @@ public class RecipeServiceImpl implements RecipeService{
 		recipe.setName(form.getName());
 		recipe.setTime(LocalTime.parse(form.getTime()));
 		recipe.setId(form.getId());
-		recipeRepository.save(recipe);
+		recipe.setPath(form.getPath());
+		recipe.setVersion(form.getVersion());
+		recipeRepository.saveAndFlush(recipe);
+		String extension = fileWriter.write(Folder.RECIPE, form.getFile(), recipe.getId());
+		if(extension!=null){
+			recipe.setVersion(form.getVersion()+1);
+			recipe.setPath(extension);
+			recipeRepository.save(recipe);
+		}
 	}
 
 	@Override
@@ -54,6 +67,8 @@ public class RecipeServiceImpl implements RecipeService{
 		form.setCountry(recipe.getCountry());
 		form.setName(recipe.getName());
 		form.setTime(recipe.getTime().toString());
+		form.setPath(recipe.getPath());
+		form.setVersion(recipe.getVersion());
 		return form;
 	}
 

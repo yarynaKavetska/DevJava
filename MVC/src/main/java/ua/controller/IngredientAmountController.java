@@ -56,9 +56,11 @@ public class IngredientAmountController {
 	public String show(Model model,
 			@PageableDefault(5) Pageable pageable,
 			@ModelAttribute(value="filter") IngredientAmountFilterForm filter){
+		long start = System.currentTimeMillis();
 		model.addAttribute("measuringSystems", measuringSystemService.findAll())
 		.addAttribute("ingredients", ingredientService.findAll())
 		.addAttribute("page", ingredientAmountService.findAll(pageable, filter));
+		System.out.println(System.currentTimeMillis()-start);
 		return "ingredientAmountAdmin";
 	}
 	

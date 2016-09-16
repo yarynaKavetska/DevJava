@@ -1,5 +1,7 @@
 package ua.form;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import ua.entity.Country;
 
 public class RecipeForm {
@@ -11,6 +13,20 @@ public class RecipeForm {
 	private String name;
 	
 	private Country country;
+	
+	private String path;
+	
+	private int version;
+	
+	private MultipartFile file;
+	
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
 
 	public int getId() {
 		return id;
@@ -42,5 +58,21 @@ public class RecipeForm {
 
 	public void setCountry(Country country) {
 		this.country = country;
+	}
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 }
