@@ -50,7 +50,9 @@ $(function() {
 			<form:input path="name" id="name" class="form-control"  placeholder="Recipe name" />
 			<label for="time"><form:errors path="time" /></label>
 			<form:input path="time" id="time" class="form-control" placeholder="HH:MM:SS" />
-			<input type="file" name="file">
+			<label class="btn btn-default btn-file">
+        		Browse <input type="file" name="file" style="display: none;">
+    		</label>
 			<button type="submit" class="btn btn-primary">Create Recipe</button>
 			</div>
 	</form:form>
