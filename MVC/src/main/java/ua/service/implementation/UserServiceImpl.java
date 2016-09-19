@@ -37,12 +37,15 @@ public class UserServiceImpl implements UserService, UserDetailsService{
 	
 	@PostConstruct
 	public void saveAdmin(){
-		User user = new User();
-		user.setRole(Role.ROLE_ADMIN);
-		user.setPassword(encoder.encode("admin"));
-		user.setLogin("admin");
-		user.setId(1);
-		repository.save(user);
+		User user = repository.findOne(1);
+		if(user==null){
+			user = new User();
+			user.setRole(Role.ROLE_ADMIN);
+			user.setPassword(encoder.encode("admin"));
+			user.setLogin("admin");
+			user.setId(1);
+			repository.save(user);
+		}
 	}
 
 	@Override

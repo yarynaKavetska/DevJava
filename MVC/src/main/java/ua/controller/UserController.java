@@ -19,6 +19,7 @@ public class UserController {
 	public User getForm(){
 		return new User();
 	}
+	
 	@RequestMapping("/registration")
 	public String register(){
 		return "registration";
