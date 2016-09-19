@@ -16,4 +16,9 @@ public class IndexController {
 	public String showAdmin() {
 		return "adminPanel";
 	}
+	
+	@RequestMapping("/login")
+	public String showLogin() {
+		return "login";
+	}
 }

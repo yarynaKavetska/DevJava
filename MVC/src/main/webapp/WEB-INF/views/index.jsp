@@ -8,6 +8,8 @@
 </head>
 <body>
 <h1>Hello</h1>
+<a href="/registration">Register</a>
 <a href="/admin">Admin panel</a>
+
 </body>
 </html>
