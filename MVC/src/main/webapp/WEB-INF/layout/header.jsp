@@ -6,7 +6,7 @@
 	prefix="security"%>
 
 <nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid">
+  <div class="container">
     <div class="navbar-header">
       <a class="navbar-brand" href="/"><img class="img-thumbnail" width="80" src="/resources/image/maxresdefault.jpg?version=1" /></a>
     </div>

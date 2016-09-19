@@ -11,7 +11,7 @@
 	</c:if>
 		<form:form action="/login" class="form-inline" method="post">
 				<div class="form-group">
-					<input name="username" placeholder="Login" class="form-control" />
+					<input name="login" placeholder="Login" class="form-control" />
 					<input name="password" type="password" placeholder="********" class="form-control" />
 					<button type="submit" class="btn btn-primary">Ok</button>
 				</div>
