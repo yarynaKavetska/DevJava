@@ -16,6 +16,7 @@
 <!--       	<li><a>Page 2</a></li> -->
     </ul>
     <ul class="nav navbar-nav navbar-right">
+<%--     <security:authentication property="principal.password"/> --%>
     	<li><a>${authUser.login}</a></li>
     <security:authorize access="isAuthenticated()">
 			<li>
@@ -27,10 +28,7 @@
 		</security:authorize>
 		<security:authorize access="!isAuthenticated()">
 			<li>
-				<form:form action="/login" method="get"
-					class="navbar-form navbar-right">
-					<button type="submit" class="btn btn-default">Login</button>
-				</form:form>
+				<a class="btn btn-default" href="/login">Login</a>
 			</li>
 	</security:authorize>
     </ul>

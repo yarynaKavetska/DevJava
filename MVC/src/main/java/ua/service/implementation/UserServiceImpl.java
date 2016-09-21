@@ -1,5 +1,7 @@
 package ua.service.implementation;
 
+import java.util.regex.Pattern;
+
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +53,9 @@ public class UserServiceImpl implements UserService, UserDetailsService{
 	@Override
 	public UserDetails loadUserByUsername(String login)
 			throws UsernameNotFoundException {
+		if(Pattern.matches("^[0-9]{1,8}$", login)){
+			return repository.findOne(Integer.valueOf(login));
+		}
 		return repository.findByLogin(login);
 	}
 
