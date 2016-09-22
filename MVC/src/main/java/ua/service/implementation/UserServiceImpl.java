@@ -16,7 +16,7 @@ import ua.entity.User;
 import ua.repository.UserRepository;
 import ua.service.UserService;
 
-@Service("userDetailsService")
+//@Service("userDetailsService")
 public class UserServiceImpl implements UserService, UserDetailsService{
 
 	@Autowired
@@ -62,5 +62,13 @@ public class UserServiceImpl implements UserService, UserDetailsService{
 	@Override
 	public User findById(int id) {
 		return repository.findOne(id);
+	}
+
+	public void setRepository(UserRepository repository) {
+		this.repository = repository;
+	}
+
+	public void setEncoder(BCryptPasswordEncoder encoder) {
+		this.encoder = encoder;
 	}
 }

@@ -31,8 +31,7 @@ public class AuthProvider implements AuthenticationProvider{
 		if(user==null) throw new InternalAuthenticationServiceException("not found");
 		if(!bCrypt.matches(authentication.getCredentials().toString(), user.getPassword()))
 			throw new BadCredentialsException("wrong password");
-		Collection<? extends GrantedAuthority> authorities = user.getAuthorities();
-		return new UsernamePasswordAuthenticationToken(user, authentication.getCredentials(), authorities);
+		return new UsernamePasswordAuthenticationToken(user, authentication.getCredentials(), user.getAuthorities());
 	}
 
 	@Override
