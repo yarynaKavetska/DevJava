@@ -20,6 +20,7 @@ $(function() {
 										class="sr-only">(current)</span></li>
 								<li><a href="/admin/ingredientAmount">Amount and ingredient</a></li>
 								<li><a href="/admin/country/recipe">Recipe country</a></li>
+								<li><a href="/admin/region">Region</a></li>
 							</ul>
 						</div>
 					</div>

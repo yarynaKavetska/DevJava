@@ -12,7 +12,7 @@
 								<li><a href="/admin/recipe">Recipe</a></li>
 								<li><a href="/admin/ingredientAmount">Amount and ingredient</a></li>
 								<li  class="active"><a href="/admin/country/recipe">Recipe country</a><span
-										class="sr-only">(current)</span></li>
+								<li><a href="/admin/region">Region</a></li>		class="sr-only">(current)</span></li>
 							</ul>
 						</div>
 					</div>

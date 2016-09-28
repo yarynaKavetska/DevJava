@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.PreRemove;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Country {
 
@@ -20,6 +22,7 @@ public class Country {
 	private long population;
 	
 	private String name;
+	@JsonIgnore
 	@OneToMany(mappedBy="country")
 	private List<Recipe> recipes = new ArrayList<>();
 	

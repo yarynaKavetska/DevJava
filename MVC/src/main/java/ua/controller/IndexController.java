@@ -24,4 +24,10 @@ public class IndexController {
 	public String showLogin() {
 		return "login";
 	}
+	
+	@RequestMapping("/admin/region")
+	public String showRegion() {
+		return "region";
+	}
+	
 }
